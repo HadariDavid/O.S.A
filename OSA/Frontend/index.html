@@ -1,188 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="HU">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  
+    <link rel="stylesheet" href="./style.css">
+
+    <title>OSA - Diák Felület</title>
+
 </head>
 <body>
+    <header>
+        <div class="customColoredDiv2">
+            <span class="scct">ABC<br>123<br>abc</span>
+        </div>
+        <div class="customColoredDiv">
+            <div class="toggle-menu">
+                <button class="button" onclick="toggleMenu()"> Menu </button>
+                <ul>
+                    <li>
+                        <!-- Color Picker -->
+                        <span class="mcct">Main Color</span>
+                        <input type="color" id="colorPicker" value="#036bfc">
+                    </li>
+                    <li>
+                        <!-- MainTextSwitch -->
+                        <span class="mcct">Main Text Switch</span>
+                        <label class="switch3">
+                            <input type="checkbox" id="switch3">
+                            <span class="slider3"></span>
+                        </label>
+                    </li>
+                    <br><hr>
+                    <li>
+                        <!-- Color Picker2 -->
+                        <span class="mcct">Secondary Color</span>
+                        <input type="color" id="colorPicker2" value="#00c6e6">
+                    </li>
+                    <li>
+                        <!-- SecondaryTextSwitch -->
+                        <span class="mcct">Secondary Text Switch</span>
+                        <label class="switch2">
+                            <input type="checkbox" id="switch2">
+                            <span class="slider2"></span>
+                        </label>
+                    </li>
+                    <br><hr>
+                    <li>
+                        <!-- Color Picker3 -->
+                        <span class="mcct">Detail Color</span>
+                        <input type="color" id="colorPicker3" value="#001eff">
+                    </li>
+                    <li>
+                        <!-- DetailTextSwitch -->
+                        <span class="mcct">Detail Text Switch</span>
+                        <label class="switch4">
+                            <input type="checkbox" id="switch4">
+                            <span class="slider4"></span>
+                        </label>
+                    </li>
+                    <br>
+                    <br><hr>
+                    <li>
+                        <!-- Switch -->
+                        <br><span class="mcct">Dark Mode</span>
+                        <label class="switch">
+                            <input type="checkbox" id="switch">
+                            <span class="slider"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Mode Div -->
+        <!-- Container that has the color of the background ant theyr text color changes with the color-->
+        
+        <table>
+            <tr>
+                <td class="modeTd">
+                    <div>
+                        Jelenlegi óra:<br>
+                        (jelenlegi óra helye) <br>
+                        <hr class="hr"><br>
+                        Következő óra:
+                        (következő óra helye) <br>
+                    </div>
+                </td>
+                <td class="modeTd">
+                    <div>
+                        Osztály: (osztály)<br>
+                        Szak: (szak neve)<br>
+                        <hr class="hr"><br>
+                        Osztályfőnök: (osztályfőnök neve)<br>
+                        Elérhetőségek: (Tel/E-mail helye)<br>
+                        <hr class="hr"><br>
+                        Helyettes osztályfőnök: (helyettes osztályfőnök neve)<br>
+                        Elérhetőségek: (Tel/E-mail helye)<br>
+                    </div>
+                </td>
+                <td class="modeTd">
+                    <div>
+                        <hr class="hr">
+                        ÁTLAG<br>
+                        (átlag helye)<br>
+                        <hr class="hr">
+                        <button class="button"> Részletezett Átlag </button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="modeTd" colspan="2">
+                    <div>
+                        SCHOOLC ONTENT
+                        <hr class="hr"><br>
+                            <table>
+                                <tr>
+                                    <td class="modeTd">
+                                        CONTENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="modeTd">
+                                        C ONTENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="modeTd">
+                                        CONTENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="modeTd">
+                                        C ONTENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="modeTd">
+                                        CONTENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="modeTd">
+                                        C ONTENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="modeTd">
+                                        CONTENT
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="modeTd">
+                                        C ONTENT
+                                    </td>
+                                </tr>
+                            </table>
+                    </div>
+                </td>
+                <td class="modeTd">
+                    <div>
+                        kapott jegyek:<br>
+                        <hr class="hr">
+                            <ul>
+                                <li>(jegyek helye)</li>
+                                <li>(jegyek helye)</li>
+                                <li>(jegyek helye)</li>
+                                <li>(jegyek helye)</li>
+                                <li>(jegyek helye)</li>
+                            </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="modeTd">
+                    <div>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                    </div>
+                </td>
+                <td class="modeTd">
+                    <div>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                    </div>
+                </td>
+                <td class="modeTd">
+                    <div>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                        STUFF<br>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+    </main>
+    <footer>
 
-    <div id="sidebar">
-        <p>MENU</p>
-    <button class="collapsible">Tanár</button>
-    <div class="content">
-        <a href="#">Főoldal</a>
-        <a href="#">Órarend</a>
-        <a href="#">Értékelések</a>
-        <a href="#">Átlag</a>
-    </div>
-    
-    <button class="collapsible">Diák</button>
-    <div class="content">
-        <a href="#">Főoldal</a>
-        <a href="#">Órarend</a>
-        <a href="#">Értékelések</a>
-        <a href="#">Osztály</a>
-    </div>
-    
-    <button class="collapsible">Beállítások</button>
-    <div class="content">
-        <p>Sötét Mód</p>
-        <p>Téma</p>
-        <p>Egyéb</p>
-    </div>
-    </div>
+    </footer>
 
-    <div id="content">
-    <h2>CONTENT</h2>
-
-    <table>
-        <tr>
-            <td class="modeTd">
-                <div>
-                    Jelenlegi óra:<br>
-                    (jelenlegi óra helye) <br>
-                    <hr class="hr"><br>
-                    Következő óra:
-                    (következő óra helye) <br>
-                </div>
-            </td>
-            <td class="modeTd">
-                <div>
-                    Osztály: (osztály)<br>
-                    Szak: (szak neve)<br>
-                    <hr class="hr"><br>
-                    Osztályfőnök: (osztályfőnök neve)<br>
-                    Elérhetőségek: (Tel/E-mail helye)<br>
-                    <hr class="hr"><br>
-                    Helyettes osztályfőnök: (helyettes osztályfőnök neve)<br>
-                    Elérhetőségek: (Tel/E-mail helye)<br>
-                </div>
-            </td>
-            <td class="modeTd">
-                <div>
-                    <hr class="hr">
-                    ÁTLAG<br>
-                    (átlag helye)<br>
-                    <hr class="hr">
-                    <button class="button"> Részletezett Átlag </button>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="modeTd" colspan="2">
-                <div>
-                    SCHOOLC ONTENT
-                    <hr class="hr"><br>
-                        <table>
-                            <tr>
-                                <td class="modeTd">
-                                    CONTENT
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="modeTd">
-                                    C ONTENT
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="modeTd">
-                                    CONTENT
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="modeTd">
-                                    C ONTENT
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="modeTd">
-                                    CONTENT
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="modeTd">
-                                    C ONTENT
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="modeTd">
-                                    CONTENT
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="modeTd">
-                                    C ONTENT
-                                </td>
-                            </tr>
-                        </table>
-                </div>
-            </td>
-            <td class="modeTd">
-                <div>
-                    kapott jegyek:<br>
-                    <hr class="hr">
-                        <ul>
-                            <li>(jegyek helye)</li>
-                            <li>(jegyek helye)</li>
-                            <li>(jegyek helye)</li>
-                            <li>(jegyek helye)</li>
-                            <li>(jegyek helye)</li>
-                        </ul>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="modeTd">
-                <div>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                </div>
-            </td>
-            <td class="modeTd">
-                <div>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                </div>
-            </td>
-            <td class="modeTd">
-                <div>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                    STUFF<br>
-                </div>
-            </td>
-        </tr>
-    </table>
-
-    </div>
-
-<script src="./script.js"></script>
-
+    <script src="./script.js"></script>
 </body>
 </html>
