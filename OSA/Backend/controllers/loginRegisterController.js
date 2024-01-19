@@ -28,7 +28,7 @@ var currentUser
     //users.forEach((user) => {
         ///név keresése hogy van-e ilyen letárolva ha nincs térjen vissza
         if(users.find((({ name }) => name === req.body.name)) === undefined){
-            res.status(400).json({
+            res.status(404).json({
                 "error":"nincs ilyen felhasználónév"
             });
             return;
@@ -69,24 +69,49 @@ function logout(req,res){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//név, lakhely, om az, neme anyja neve, szül hely /idő ,állampolgárság, anyanyelv 
+//gondviselő neve, rokonsági fok
+//elérhetőség cím, típus(állandó ideiglenes)
+
+//igazolványok TAJ, ADÓszám
+
+//felvétel időpontja , szak
+//jogviszony
+/*={
+        "nev":"",
+        "neme":"",
+        "anyjaNeve":"",
+        "gondviselo":"",
+        "rokonságiFok":"",
+        "szülIdo":"",
+        "szülHely":"",
+        "allampolgar":"",
+        "anyanyelv":"",
+        "lakcim": "Magyarország, 3980, Sátoraljaújhely, Köztársaság utca, 2",
+        "OMAzon":"",
+        "TAJ":"",
+        "adoSzam":"",
+        "jogviszony":"",
+        "jogKezdete":"",
+        "szak":""
+    }
+  */
+
 function registStudent(req, res){
 
-    if(req.body.name === undefined){
-        res.status(400).json({
-        "error": "adjon meg egy felhasználónevet" 
-        });
-        return;
-    }
-
-    if(req.body.password === undefined){
-        res.status(400).json({
-            "error": "adjon meg egy jelszót" 
-        });
-        return;
-    }
+  var tanulóKötAdatok = req.body;
+    Object.values(tanulóKötAdatok).forEach((element)=>{
+        if(element == "" || element === undefined){
+            res.status(400).json({
+                "error": "Egyik adat hiányzik kérem ellenőrizze" 
+                });
+                return;
+        }  
+    });
+   
 
     users.push(
-        {"name": req.body.name, "password":req.body.password}
+        {"name": req.body.name, "password":req.body.password} // tanulói adatokat küldjük majd
         );
 
     res.status(200).json({
@@ -101,6 +126,8 @@ function registStudent(req, res){
 /////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 function registTeacher(req, res){
 
