@@ -8,6 +8,11 @@ const users = [
 
 var currentUser
 
+
+
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
  function login(req, res){
     if(req.body.name === undefined){
@@ -88,6 +93,7 @@ function logout(req,res){
         "allampolgar":"",
         "anyanyelv":"",
         "lakcim": "Magyarország, 3980, Sátoraljaújhely, Köztársaság utca, 2",
+        "személyi":,
         "OMAzon":"",
         "TAJ":"",
         "adoSzam":"",
@@ -130,20 +136,37 @@ function registStudent(req, res){
 
 
 function registTeacher(req, res){
-
-    if(req.body.name === undefined){
-        res.status(400).json({
-        "error": "adjon meg egy felhasználónevet" 
-        });
-        return;
+/*
+tanár regisztrálási adatai
+    {
+        "nev":"",
+        "neme":"",
+        "anyjaNeve":,
+        "szülIdo":"",
+        "szülHely":"",
+        "allampolgar":"",
+        "anyanyelv":"",
+        "lakcim": "Magyarország, 3980, Sátoraljaújhely, Köztársaság utca, 2",
+        "személyi":"",
+        "OMAzon":"", (ha első akkor kap egyet később)
+        "TAJ":"",
+        "adoSzam":"",
+        "bankszámlaszám":;
+        "jogviszony":"",
+        "jogKezdete":"",
+        "szak":""
     }
-
-    if(req.body.password === undefined){
+*/
+   
+var tanárKötAdatok = req.body;
+Object.values(tanárKötAdatok).forEach((element)=>{
+    if(element == "" || element === undefined){
         res.status(400).json({
-            "error": "adjon meg egy jelszót" 
-        });
-        return;
-    }
+            "error": "Egyik adat hiányzik kérem ellenőrizze" 
+            });
+            return;
+    }  
+});
 
     users.push(
         {"name": req.body.name, "password":req.body.password}
