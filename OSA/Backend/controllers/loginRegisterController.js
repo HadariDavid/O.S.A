@@ -15,19 +15,15 @@ var currentUser
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
  function login(req, res){
-    if(req.body.name === undefined){
-        res.status(400).json({
-            "error":"felhasználónév nincs megadva"
-        });
-        return;
-    }
 
-    if(req.body.password === undefined){
-        res.status(400).json({
-            "error":"jelszó nincs megadva"
-        });
-        return;
-    }
+    Object.values(req.body).forEach((element)=>{
+        if(element == "" || element === undefined){
+            res.status(400).json({
+                "error": "Egyik adat hiányzik kérem ellenőrizze" 
+                });
+                return;
+        }  
+    });
 
 
     //users.forEach((user) => {

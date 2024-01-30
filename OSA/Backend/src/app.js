@@ -1,6 +1,10 @@
 //require your shit
 const express = require("express");
 const bodyParser = require("body-parser");
+const sequelize = require("./db");
+
+const TeremModel = require("./dbModels/termek.model");
+
 const logRegRouter = require("../routes/loginRegisterRoute");
 const { login, registStudent, registTeacher, logout } = require("../controllers/loginRegisterController");
 
@@ -10,15 +14,35 @@ const app = express();
 //variables
 const PORT = 3000;
 
+
 app.use(bodyParser.json());
 
 
-app.use("/", logRegRouter);
+/////////////////////////////////////////////database join////////////////////////
 
+sequelize.authenticate().then(() => {
+    console.log("kapcsolat sikeresen létesült");
+    sequelize.modelManager.addModel(TeremModel);
+    sequelize.sync();
+
+}).catch((error) => {
+    console.log("Az adatbázissal nem sikerült a kapcsolat");
+    console.log(error);
+})
+
+/////////////////////////////////////////////database join end////////////////////////
+
+
+
+/////////////////////////////////////login & registration////////////////////////
+
+app.use("/", logRegRouter);
 app.get(logRegRouter, logout);
 app.post(logRegRouter, login)
 app.put(logRegRouter,registStudent);
 app.put(logRegRouter,registTeacher);
+
+/////////////////////////////////////login & registration end////////////////////////
 
 
 
