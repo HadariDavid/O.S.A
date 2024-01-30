@@ -4,9 +4,12 @@ const bodyParser = require("body-parser");
 const sequelize = require("./db");
 
 const TeremModel = require("./dbModels/termek.model");
+const TanarModel = require("./dbModels/tanarak.model");
+const TantargyModel = require("./dbModels/tantargyak.model")
+const OsztalyzatModel = require("./dbModels/osztalyzat.model");
 
-const logRegRouter = require("../routes/loginRegisterRoute");
-const { login, registStudent, registTeacher, logout } = require("../controllers/loginRegisterController");
+const logRegRouter = require("./routes/loginRegisterRoute");
+const { login, registStudent, registTeacher, logout } = require("./controllers/loginRegisterController");
 
 //use your required shit
 const app = express();
@@ -22,7 +25,12 @@ app.use(bodyParser.json());
 
 sequelize.authenticate().then(() => {
     console.log("kapcsolat sikeresen létesült");
+
     sequelize.modelManager.addModel(TeremModel);
+    sequelize.modelManager.addModel(TanarModel);
+    sequelize.modelManager.addModel(TantargyModel);
+    sequelize.modelManager.addModel(OsztalyzatModel);
+
     sequelize.sync();
 
 }).catch((error) => {
