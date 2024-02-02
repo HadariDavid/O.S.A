@@ -24,17 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `orarend`
+-- Tábla szerkezet ehhez a táblához `ora`
 --
 
-CREATE TABLE `orarend` (
-  `osztaly` varchar(7) NOT NULL,
-  `nap` text NOT NULL,
-  `becsengo` time NOT NULL,
-  `kicsengo` time NOT NULL,
-  `ora` varchar(5) NOT NULL,
-  `tanar` text NOT NULL,
-  `terem` varchar(12) NOT NULL
+CREATE TABLE `ora` (
+  `1ora` varchar(50) NOT NULL,
+  `2ora` varchar(50) NOT NULL,
+  `3ora` varchar(50) NOT NULL,
+  `4ora` varchar(50) NOT NULL,
+  `5ora` varchar(50) NOT NULL,
+  `6ora` varchar(50) NOT NULL,
+  `7ora` varchar(50) NOT NULL,
+  `8ora` varchar(50) NOT NULL,
+  `9ora` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 COMMIT;
 
