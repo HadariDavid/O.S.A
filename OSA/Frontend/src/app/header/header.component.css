@@ -1,0 +1,10 @@
+a:hover{
+    background-color: #ffa600;
+    font-weight: bold;
+}
+
+li{
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
+}
