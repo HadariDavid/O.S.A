@@ -25,6 +25,7 @@ li{
     text-align: center;
     padding-left: 4px;
     padding-right: 4px;
+    margin-bottom: 1%;
     cursor: pointer;
     background-color: #ffa600;
     border-radius: 8px;
@@ -33,5 +34,26 @@ li{
 
 li:hover{
     background-color: #ffbb3b;
+    font-weight: bold;
+}
+
+li.warning{
+    width: 100%;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-bottom: 1%;
+    cursor: pointer;
+    background-color: #ff1919;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+li.warning a{
+    color: #ffffff
+}
+
+li.warning:hover{
+    background-color: #ff4f4f;
     font-weight: bold;
 }

@@ -1,12 +1,12 @@
 <div class="container">
     <div class="login-form">
-        <h1>Tanár Regisztráció</h1>
+        <h1>Diák Regisztráció</h1>
         <hr>
         <br>
         <div>
             <form>
                 <div class="container">
-                    <label>Tanár Neve:</label>
+                    <label>Diák Neve:</label>
                     <div class="text-container">
                         <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" required>
                         <input type="text" class="form-control" placeholder="Középső Név (Nem kötelező)" title="Középső Név">
@@ -19,7 +19,7 @@
                         <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" required>
                     </div>
                     <hr>
-                    <label>Tanár Neme:</label>
+                    <label>Diák Neme:</label>
                     <div class="form-check">
                         <input class="gender-input" type="radio" name="GenderRadio" id="GenderRadio1" title="Férfi">
                         Férfi
@@ -62,13 +62,13 @@
                     <br>
                     Már rendelkezik OM azonosítóval? [ Nem / Igen ]
                     <label class="switch">
-                        <input type="checkbox" id="OM-Switch" (change)="isChecked($event)">
+                        <input type="checkbox" id="OM-Switch" (change)="OmIsChecked($event)">
                         <span class="slider"></span>
                     </label>
                     <br>
                     OM Azonosító:
                     <div class="text-container">
-                        <input type="text" class="form-control mid" [placeholder]="Placeholder" title="OM Azonosító" id="OM-Number" [disabled]="isDisabled" [value]="Value" maxlength="11" >
+                        <input type="text" class="form-control mid" [placeholder]="OmPlaceholder" title="OM Azonosító" id="OM-Number" [disabled]="OmIsDisabled" [value]="OmValue" maxlength="11" >
                     </div>
                     <label>Társadalombiztosítási Azonosító Jel (TAJ Szám):</label>
                     <div class="text-container">
@@ -79,12 +79,18 @@
                         <input type="text" class="form-control mid" placeholder="Adóazonosító Jel" title="Adóazonosító Jel" maxlength="10" required>
                     </div>
                     <label>Bankszámla Szám:</label>
+                    <br>
+                    Az adott diák már rendelkezik bankszámlával? [ Nem / Igen ]
+                    <label class="switch">
+                        <input type="checkbox" id="Bank-Switch" (change)="BankIsChecked($event)">
+                        <span class="slider"></span>
+                    </label>
                     <div class="text-container">
-                        <input type="text" class="form-control short" placeholder="XXXXXXXX" title="Bankszámlaszám" maxlength="8" required>
+                        <input type="text" class="form-control short" [placeholder]="BankPlaceholder" title="Bankszámlaszám" maxlength="8" [disabled]="BankIsDisabled" [value]="BankValue">
                         <h2>-</h2>
-                        <input type="text" class="form-control short" placeholder="XXXXXXXX" title="Bankszámlaszám" maxlength="8" required>
+                        <input type="text" class="form-control short" [placeholder]="BankPlaceholder" title="Bankszámlaszám" maxlength="8" [disabled]="BankIsDisabled" [value]="BankValue">
                         <h2>-</h2>
-                        <input type="text" class="form-control short" placeholder="XXXXXXXX" title="Bankszámlaszám" maxlength="8" required>
+                        <input type="text" class="form-control short" [placeholder]="BankPlaceholder" title="Bankszámlaszám" maxlength="8" [disabled]="BankIsDisabled" [value]="BankValue">
                     </div>
                     <hr>
                     <label>Jogviszony:</label>

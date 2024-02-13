@@ -3,6 +3,7 @@ import { BejelentkezesComponent } from './bejelentkezes/bejelentkezes.component'
 import { Err404Component } from './err404/err404.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegistTComponent } from './regist-t/regist-t.component';
+import { RegistDComponent } from './regist-d/regist-d.component';
 
 export const routes: Routes = [
     {
@@ -27,6 +28,11 @@ export const routes: Routes = [
                 path: "bejelentkezes/admin/regist-t",
                 title: "Tanár Regisztrálás",
                 component:RegistTComponent
+            },
+            {
+                path: "bejelentkezes/admin/regist-d",
+                title: "Diák Regisztrálás",
+                component:RegistDComponent
             },
 
 
