@@ -1,6 +1,6 @@
 
 const sequelize = require("../db");
-
+const bcrypt = require("bcrypt");
 
 const TanarModel = require("../dbModels/tanarak.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
@@ -145,7 +145,7 @@ function registStudent(req, res){
 
 
 
-function registTeacher(req, res){
+async function registTeacher(req, res){
 
 var tanarKötAdatok = [
     "nev",
@@ -185,8 +185,17 @@ Object.values(tanarKötAdatok).forEach((element)=>{
 });
 
 
+//const jelszo = req.body.jelszo;
 
+// 13 salt egy fél mp kódolást igényel és lefordítást bejelentkezési idő kb 1 mp
+//const hash = await bcrypt.hash(jelszo, 13);
 
+/* visszafordítás
+const isMach = await bcrypt.compare("Password1", hash);
+console.log(isMach);
+*/
+
+//hash-elt jelszót feltölteni adatbázisba (várunk ilyen mezőre)
 const tanar1 = TanarModel.build({
     id:req.body.id,
     tanarneve: req.body.tanarneve,
