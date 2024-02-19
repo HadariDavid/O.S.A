@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Sze 28. 08:54
+-- Létrehozás ideje: 2024. Feb 19. 15:49
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `diakadatlap` (
-  `id` varchar(9) DEFAULT NULL,
+  `id` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `jelszo` varchar(100) NOT NULL,
   `osztalyId` varchar(5) DEFAULT NULL,
   `csaladNev` text DEFAULT NULL,
   `keresztNev` text DEFAULT NULL,
@@ -65,9 +66,20 @@ CREATE TABLE `diakadatlap` (
 -- A tábla adatainak kiíratása `diakadatlap`
 --
 
-INSERT INTO `diakadatlap` (`id`, `osztalyId`, `csaladNev`, `keresztNev`, `szuletesiHely`, `szuletesiDatum`, `szuletesiOrszag`, `allampolgarsag`, `anyanyelv`, `telefon`, `email`, `anyjaleanyneve`, `gondviseloNeve`, `gondviseloTelefon`, `gondviseloEmail`, `lakcim`, `taj`, `adoszam`, `bankszamla`, `oktatasiAzonosito`, `iskolaAzonosito`, `oraId`, `szerep`, `jogviszonyKezdete`, `jogviszonyVartVege`, `jogviszony`, `hatranyosHelyzet`, `kepesitesek`, `egyediMegjegyzes`, `igaztolatlanHianyzas`, `igazoltHianyzas`) VALUES
-('123789654', '2/14c', 'Hadari ', 'Dávid', 'Sátoraljaújhely', '2023-09-28', 'Magyarország', 'magyar', 'magyar', '+36304831258', 'hadaridavid55@gmail.com', 'Hadari Éva', 'Hadari József', '+36301238798', 'hadarieva@gmail.com', '3980,Sátoraljaújhely, köztársa', 120649585, 1234565461, 1110001112, '123321636', 252525252, 214, 'diák', '2023-09-28', '2023-09-28', 'nappali osztagos', 'nincs', 'nincs', 'lusta', 0, 1),
-('123789654', '2/14c', 'Hadari ', 'Dávid', 'Sátoraljaújhely', '2023-09-28', 'Magyarország', 'magyar', 'magyar', '+36304831258', 'hadaridavid55@gmail.com', 'Hadari Éva', 'Hadari József', '+36301238798', 'hadarieva@gmail.com', '3980,Sátoraljaújhely, köztársa', 120649585, 1234565461, 1110001112, '123321636', 252525252, 214, 'diák', '2023-09-28', '2023-09-28', 'nappali osztagos', 'nincs', 'nincs', 'lusta', 0, 1);
+INSERT INTO `diakadatlap` (`id`, `jelszo`, `osztalyId`, `csaladNev`, `keresztNev`, `szuletesiHely`, `szuletesiDatum`, `szuletesiOrszag`, `allampolgarsag`, `anyanyelv`, `telefon`, `email`, `anyjaleanyneve`, `gondviseloNeve`, `gondviseloTelefon`, `gondviseloEmail`, `lakcim`, `taj`, `adoszam`, `bankszamla`, `oktatasiAzonosito`, `iskolaAzonosito`, `oraId`, `szerep`, `jogviszonyKezdete`, `jogviszonyVartVege`, `jogviszony`, `hatranyosHelyzet`, `kepesitesek`, `egyediMegjegyzes`, `igaztolatlanHianyzas`, `igazoltHianyzas`) VALUES
+('123789654', '', '2/14c', 'Hadari ', 'Dávid', 'Sátoraljaújhely', '2023-09-28', 'Magyarország', 'magyar', 'magyar', '+36304831258', 'hadaridavid55@gmail.com', 'Hadari Éva', 'Hadari József', '+36301238798', 'hadarieva@gmail.com', '3980,Sátoraljaújhely, köztársa', 120649585, 1234565461, 1110001112, '123321636', 252525252, 214, 'diák', '2023-09-28', '2023-09-28', 'nappali osztagos', 'nincs', 'nincs', 'lusta', 0, 1);
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `diakadatlap`
+--
+ALTER TABLE `diakadatlap`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `oraId` (`oraId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
