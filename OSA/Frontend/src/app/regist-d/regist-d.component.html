@@ -12,11 +12,29 @@
                         <input type="text" class="form-control" placeholder="Középső Név (Nem kötelező)" title="Középső Név">
                         <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" required>
                     </div>
+                    <div class="text-container">
+                        <label>Tel.:</label>
+                        <input type="text" class="form-control mid" placeholder="Telefonszám" title="Telefonszám" maxlength="15" required>
+                    </div>
                     <label>Anyja Neve:</label>
                     <div class="text-container">
                         <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" required>
                         <input type="text" class="form-control" placeholder="Középső Név (Nem kötelező)" title="Középső Név">
                         <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" required>
+                    </div>
+                    <div class="text-container">
+                        <label>Tel.:</label>
+                        <input type="text" class="form-control mid" placeholder="Telefonszám" title="Telefonszám" maxlength="15" required>
+                    </div>
+                    <label>Gondvselő Neve:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" required>
+                        <input type="text" class="form-control" placeholder="Középső Név (Nem kötelező)" title="Középső Név">
+                        <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" required>
+                    </div>
+                    <div class="text-container">
+                        <label>Tel.:</label>
+                        <input type="text" class="form-control mid" placeholder="Telefonszám" title="Telefonszám" maxlength="15" required>
                     </div>
                     <hr>
                     <label>Diák Neme:</label>
@@ -78,6 +96,7 @@
                     <div class="text-container">
                         <input type="text" class="form-control mid" placeholder="Adóazonosító Jel" title="Adóazonosító Jel" maxlength="10" required>
                     </div>
+                    <!-- -->
                     <label>Bankszámla Szám:</label>
                     <br>
                     Az adott diák már rendelkezik bankszámlával? [ Nem / Igen ]
@@ -85,6 +104,8 @@
                         <input type="checkbox" id="Bank-Switch" (change)="BankIsChecked($event)">
                         <span class="slider"></span>
                     </label>
+                    <br>
+                    Bankszámla Szám:
                     <div class="text-container">
                         <input type="text" class="form-control short" [placeholder]="BankPlaceholder" title="Bankszámlaszám" maxlength="8" [disabled]="BankIsDisabled" [value]="BankValue">
                         <h2>-</h2>
@@ -102,13 +123,10 @@
                         <input type="date" placeholder="Születesi Idő" title="Születesi Idő" required>
                     </div>
                     <hr>
-                    <label>Szak(ok):</label>
-                    <div>
-                        <input type="text" class="form-control long" placeholder="Új szak megadása" title="Új szak megadása" required>
-                        <br>
-                        <div>
-                            <button type="button" class="addBtn">+</button><button type="button" class="addBtn">-</button>
-                        </div>
+                    <label>Képzés:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control long" placeholder="Képzés" title="Képzés" required>
+                        <input type="text" class="form-control short" placeholder="Osztály" title="Osztály" required>
                     </div>
                     <br><br>
                     <hr>

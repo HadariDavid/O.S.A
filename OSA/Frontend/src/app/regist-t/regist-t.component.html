@@ -12,6 +12,10 @@
                         <input type="text" class="form-control" placeholder="Középső Név (Nem kötelező)" title="Középső Név">
                         <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" required>
                     </div>
+                    <div class="text-container">
+                        <label>Tel.:</label>
+                        <input type="text" class="form-control mid" placeholder="Telefonszám" title="Telefonszám" maxlength="15" required>
+                    </div>
                     <label>Anyja Neve:</label>
                     <div class="text-container">
                         <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" required>
@@ -78,6 +82,7 @@
                     <div class="text-container">
                         <input type="text" class="form-control mid" placeholder="Adóazonosító Jel" title="Adóazonosító Jel" maxlength="10" required>
                     </div>
+                    <!-- -->
                     <label>Bankszámla Szám:</label>
                     <div class="text-container">
                         <input type="text" class="form-control short" placeholder="XXXXXXXX" title="Bankszámlaszám" maxlength="8" required>
@@ -98,10 +103,12 @@
                     <hr>
                     <label>Szak(ok):</label>
                     <div>
-                        <input type="text" class="form-control long" placeholder="Új szak megadása" title="Új szak megadása" required>
+                        <div id="szak-container"></div>
+                        <input type="text" class="form-control long" placeholder="Új szak megadása" title="Új szak megadása" id="szak-text" required>
+                        <input type="text" class="form-control long" placeholder="Új szak megadása" title="Új szak megadása" id="szak-text" required>
                         <br>
                         <div>
-                            <button type="button" class="addBtn">+</button><button type="button" class="addBtn">-</button>
+                            <button type="button" class="addBtn" id="plu" onclick="plusButton()">+</button><button type="button" class="addBtn" id="min" onclick="minusButton()">-</button>
                         </div>
                     </div>
                     <br><br>
