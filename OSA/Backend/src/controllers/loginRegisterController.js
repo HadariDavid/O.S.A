@@ -2,7 +2,7 @@
 const sequelize = require("../db");
 const bcrypt = require("bcrypt");
 
-const TanarModel = require("../dbModels/tanarak.model");
+const TanarModel = require("../dbModels/tanaradatlap.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
 
 
@@ -87,14 +87,13 @@ function logout(req,res){
     }
   */
 
-function registStudent(req, res){
+async function registTeacher(req, res){
 
-  var tanulóKötAdatok = [
-    "nev",
+var tanarKötAdatok = [
+    "vezeteknev",
+    "keresztnev",
     "neme",
-    "anyjaNeve",
-    "gondviselo",
-    "rokonságiFok",
+    "anyjaleanyneve",
     "szülIdo",
     "szülHely",
     "allampolgar",
@@ -104,14 +103,16 @@ function registStudent(req, res){
     "OMAzon",
     "TAJ",
     "adoSzam",
+    "bankszámlaszám",
     "jogviszony",
     "jogKezdete",
-    "szak"
-  ];
+    "szak",
+    "jelszo"
+];
 
-//adat helyességének ellenörzése
-  for(let i = 0; i< tanulóKötAdatok.length; i++){
-    if(tanulóKötAdatok[i] != Object.keys(req.body)[i] ){
+for(let i = 0; i< tanarKötAdatok.length; i++){
+    if(tanarKötAdatok[i] != Object.keys(req.body)[i] ){
+        console.log(tanarKötAdatok[i] + Object.keys(req.body)[i]);
         res.status(400).json({
             "error": "nem megfelelő adat került elküldésre" 
             });
@@ -119,25 +120,68 @@ function registStudent(req, res){
     }
   };
 
-  //adat értékeinek ellenörzése
-   Object.values(tanulóKötAdatok).forEach((element)=>{
-        if(element == "" || element === undefined){
-            res.status(400).json({
-                "error": "Egyik adat hiányzik kérem ellenőrizze" 
-                });
-                return;
-        }
-   });
-    
-   
-    res.status(200).json({
-        "response":"sikeres regisztráció"
-    });
+Object.values(tanarKötAdatok).forEach((element)=>{
+    if(element == "" || element === undefined){
+        res.status(400).json({
+            "error": "Egyik adat hiányzik kérem ellenőrizze" 
+            });
+            return;
+    }  
+});
 
-    /*
-    users.forEach((user) =>{
-        console.log("felhasználó: " + user.name + "; jelszó: " + user.password)
-    });*/
+
+//const jelszo = req.body.jelszo;
+
+
+/* visszafordítás
+const isMach = await bcrypt.compare("Password1", hash);
+console.log(isMach);
+*/
+
+// 13 salt egy fél mp kódolást igényel és lefordítást bejelentkezési idő kb 1 mp
+
+const hash = await bcrypt.hash(req.body.jelszo, 13).then(()=>{ hashReady = true});
+    
+    if(hashReady){
+        const tanar1 = TanaradatlapModel.build({
+            id:123456789,
+            osztalyId:"2/14c",
+            csaladNev:req.body.vezeteknev,
+            keresztNev: req.body.keresztnev,
+            szuletesiHely: req.body.szülHely,
+            szuletesiDatum:req.body.szülIdo,
+            szuletesiOrszag:"Magyarország",
+            allampolgarsag:req.body.allampolgar,
+            anyanyelv:req.body.anyanyelv,
+            telefon:"+36325578898",
+            email:"email@email.com",
+            anyjaleanyneve:req.body.anyjaleanyneve,
+            lakcim:req.body.lakcim,
+            taj:req.body.TAJ,
+            adoSzam:req.body.adoSzam,
+            bankszámlaszám:req.body.bankszámlaszám,
+            oktatasiAzonosito:req.body.OMAzon,
+            iskolaAzonosito:12345678911,
+            oraId:123456789,
+            szerep:"Tanar",
+            jogviszonyKezdete:req.body.jogKezdete,
+            jogviszonyVartVege:"2025.08.30",
+            jogviszony:req.body.jogviszony,
+            szakok: req.body.szak,
+            jelszó: hash
+            
+            });
+            console.log(tanar1.toJSON());
+
+            tanar1.save().then(() => {
+
+                res.status(200).json({
+                    "response":"sikeres regisztráció"
+                });
+            });
+    }         
+        
+}
 }
 /////////////////////////////////////////////////////////////////////////////
 
