@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const sequelize = require("./db");
 
 const TeremModel = require("./dbModels/termek.model");
-const TanarModel = require("./dbModels/tanarak.model");
+const TanarModel = require("./dbModels/tanaradatlap.model");
 const TantargyModel = require("./dbModels/tantargyak.model")
 const OsztalyzatModel = require("./dbModels/osztalyzat.model");
 
@@ -27,7 +27,7 @@ sequelize.authenticate().then(() => {
     console.log("kapcsolat sikeresen létesült");
 
     sequelize.modelManager.addModel(TeremModel);
-    sequelize.modelManager.addModel(TanarModel);
+    sequelize.modelManager.addModel(TanaradatlapModel);
     sequelize.modelManager.addModel(TantargyModel);
     sequelize.modelManager.addModel(OsztalyzatModel);
 
