@@ -18,6 +18,8 @@
     border-radius: 5px;
 }
 
+
+/* TEXT INPUT SZÉLESSÉGEK */
 .login-form input[type="text"].short {
     width: 10%;
 }
@@ -30,6 +32,9 @@
     width: 30%;
 }
 
+
+
+/* FORM GOMB BEÁLLÍTÁSOK */
 .login-form button {
     width: 25%;
     padding: 10px;
@@ -45,12 +50,6 @@
 
 .login-form button:hover {
     background-color: #ffbb3b;
-}
-
-img{
-    padding-bottom: 10%;
-    width: 50%;
-    height: 50%;
 }
 
 h1{
@@ -70,7 +69,7 @@ label{
 
 
 
-
+/* CHECK BOX INPUT SWITCH */
 .switch {
     position: relative;
     display: inline-block;

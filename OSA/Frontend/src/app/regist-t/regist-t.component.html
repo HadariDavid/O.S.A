@@ -103,12 +103,12 @@
                     <hr>
                     <label>Szak(ok):</label>
                     <div>
-                        <div id="szak-container"></div>
-                        <input type="text" class="form-control long" placeholder="Új szak megadása" title="Új szak megadása" id="szak-text" required>
-                        <input type="text" class="form-control long" placeholder="Új szak megadása" title="Új szak megadása" id="szak-text" required>
+                        <div id="szak-container">
+                            <input type="text" class="form-control ex-long" placeholder="Új szak megadása" title="Új szak megadása" id="szak-text" maxlength="128" required>
+                        </div>
                         <br>
                         <div>
-                            <button type="button" class="addBtn" id="plu" onclick="plusButton()">+</button><button type="button" class="addBtn" id="min" onclick="minusButton()">-</button>
+                            <button type="button" class="addBtn" id="plu">+</button><button type="button" class="addBtn" id="min">-</button>
                         </div>
                     </div>
                     <br><br>
@@ -119,3 +119,4 @@
         </div>
     </div>
 </div>
+<script src="../../scripts.js"></script>
