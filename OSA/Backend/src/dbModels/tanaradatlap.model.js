@@ -130,7 +130,7 @@ const Tanaradatlap = sequelize.define("Tanardatlap", {
     comment:"milyen témában taníthat a tanár"
   }
 },{
-    tableName: "diakadatlap",
+    tableName: "tanaradatlap",
     timestamps:false
 });
 
