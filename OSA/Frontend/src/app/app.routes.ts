@@ -20,22 +20,20 @@ export const routes: Routes = [
         component:BejelentkezesComponent
     },
         {
-            path: "bejelentkezes/admin",
+            path: "admin",
             title: "OSA | ADMIN",
             component:AdminComponent
         },
             {
-                path: "bejelentkezes/admin/regist-t",
+                path: "admin/regist-t",
                 title: "Tanár Regisztrálás",
                 component:RegistTComponent
             },
             {
-                path: "bejelentkezes/admin/regist-d",
+                path: "admin/regist-d",
                 title: "Diák Regisztrálás",
                 component:RegistDComponent
             },
-
-
 
     {
         path: "**",
