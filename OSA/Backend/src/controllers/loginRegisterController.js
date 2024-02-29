@@ -4,66 +4,38 @@ const bcrypt = require("bcrypt");
 
 const TanaradatlapModel = require("../dbModels/tanaradatlap.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
+const passport = require("passport");
 
 
 async function hashData(data){
     return await bcrypt.hash(data, 13);
+}
+
+async function adatLekérdez(model, adat, keres){
+
+    const whereParameterek = {};
+    whereParameterek[adat] = keres;
+
+    const modelData = model.findAll({
+         where: whereParameterek
+     });
+ 
+     return await modelData;
     
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
- function login(req, res){
-
-    Object.values(req.body).forEach((element)=>{
-        if(element == "" || element === undefined){
-            res.status(400).json({
-                "error": "Egyik adat hiányzik kérem ellenőrizze" 
-                });
-                return;
-        }  
-    });
-
-
-    //users.forEach((user) => {
-        ///név keresése hogy van-e ilyen letárolva ha nincs térjen vissza
-        if(users.find((({ name }) => name === req.body.name)) === undefined){
-            res.status(404).json({
-                "error":"nincs ilyen felhasználónév"
-            });
-            return;
-        }
-
-        let bejelentkezesAdatok = users.find((({ name }) => name === req.body.name));
-        if( bejelentkezesAdatok.password === req.body.password){
-            currentUser = bejelentkezesAdatok;
-            res.status(200).json({
-                "response":"sikeres bejelentkezés!",
-                "name": bejelentkezesAdatok.name
-                    
-            });
-        }else{
-            res.status(400).json({
-                "error":"ilyen bejelentkezési adatokkal nincs fiók"
-            })
-        }
-       
+ async function login(req, res){
+        res.send(req.passport.id);
+    
     }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 function logout(req,res){
-    if(currentUser === undefined){
-        app.status(400).json(
-            {"response": "nincs felhasználó bejelentkezve"}
-        );
-        return;
-    }
-
-    currentUser = undefined;
-    app.status(200).json({"status":"sikeres kijelentkezés"}
-    );
+   
 }
 
 
@@ -191,14 +163,6 @@ Object.values(tanarKötAdatok).forEach((element)=>{
     }  
 });
 
-
-//const jelszo = req.body.jelszo;
-
-
-/* visszafordítás
-const isMach = await bcrypt.compare("Password1", hash);
-console.log(isMach);
-*/
 
 // 13 salt egy fél mp kódolást igényel és lefordítást bejelentkezési idő kb 1 mp
 
