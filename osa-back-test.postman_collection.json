@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "8a910675-4ffa-43d4-bb33-6301afffe73a",
+		"name": "osa-back-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31246110"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"Nám\",\r\n    \"jelszo\":\"Kukásauto!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/registration/teacher",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \r\n            \"csaladNev\":\"Nádori\",\r\n            \"keresztNev\":\"mama\",\r\n            \"szuletesiHely\":\"sátoraljaújhely\",\r\n            \"szuletesiDatum\":\"1999.01.01\",\r\n            \"szuletesiOrszag\":\"Magyarország\",\r\n            \"allampolgarsag\":\"magyar\",\r\n            \"anyanyelv\":\"magyar\",\r\n            \"telefon\":\"+36325578898\",\r\n            \"email\":\"email2@email.com\",\r\n            \"anyjaleanyneve\":\"Nádori Mama mamája\",\r\n            \"lakcim\":\"újhely city, 3980, izé utca\",\r\n            \"taj\":123456789,\r\n            \"adoSzam\":1234567891,\r\n            \"bankszámlaszám\":\"12345678998-765432112345\",\r\n            \"oktatasiAzonosito\":1000,\r\n            \"szerep\":\"Tanár\",\r\n            \"jogviszonyKezdete\":\"2025.08.30\",\r\n            \"jogviszonyVartVege\":\"2020.09.1\",\r\n            \"jogviszony\":\"teljes munkaidős tanár\",\r\n            \"szakok\":\"informatika\",\r\n            \"jelszo\":\"Kiskutya2\"\r\n            \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/registration/teacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"registration",
+						"teacher"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/hitelesites",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUazI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiLDgWxlaMOhbmRyw7MiLCJ1c2VySUQiOiI3MzgyMTkyNjcxNTIiLCJpYXQiOjE3MDkzODg2MDcsImV4cCI6MTcwOTM5MjIwN30.k_8SPienwVWtbiVthjsfY0Hd4ijkmd1Jc_axATVXDRg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/hitelesites",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"hitelesites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/registration/student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":738219267152, //OM azonosító\r\n    \"osztalyId\":\"1/13c\",\r\n            \"csaladNev\":\"Pahaszt\",\r\n            \"keresztNev\":\"Álehándró\",\r\n            \"szuletesiHely\": \"sikátor 2. kuka\",\r\n            \"szuletesiDatum\":\"2010.01.01\",\r\n            \"szuletesiOrszag\":\"Kugliország\",\r\n            \"allampolgarsag\":\"kugli\",\r\n            \"anyanyelv\":\"magyar\",\r\n            \"telefon\":\"+36302349876\",\r\n            \"email\":\"kugli123@email.hu\",\r\n            \"anyjaleanyneve\":\"Huán Rozália\",\r\n            \"gondviseloNeve\":\"állambácsi\",\r\n            \"gondviseloTelefon\":\"+36302349877\",\r\n            \"gondviseloEmail\":\"gondviselo123@email.hu\",\r\n            \"lakcim\":\"3980 sátoraljaújhely, árpád utca 3\",\r\n            \"taj\":123456788,\r\n            \"adoSzam\":1234567892,\r\n            \"bankszámlaszám\":\"12345678998-765432112342\",\r\n            \"szerep\":\"diák\",\r\n            \"jogviszonyKezdete\":\"2024.03.02\",\r\n            \"jogviszonyVartVege\":\"2028.03.02\",\r\n            \"jogviszony\":\"nappali tagozatos\",\r\n            \"hatranyosHelyzet\":\"Halmozottan Hátrányos helyzetű\",\r\n            //\"kepesitesek\":\"\",\r\n            \"egyediMegjegyzes\":\"hülye szegény de nagyon\",\r\n            \"jelszo\": \"Kukásauto!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/registration/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"registration",
+						"student"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
