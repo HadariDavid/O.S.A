@@ -15,7 +15,7 @@ dotenv.config();
         const token = req.headers.authorization.split(' ')[1];
         //check for token
         if (!token) {
-            res.status(200)
+            res.status(401)
                 .json(
                     {
                         success: false,
