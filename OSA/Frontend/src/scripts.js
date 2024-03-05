@@ -4,14 +4,12 @@ document.addEventListener('DOMContentLoaded', function() { // Megvárja amég az
 const plu = document.getElementById('plu'); // plu (PLUsz rövidítés) | HTML -> regist-t.component.html -> [button id] (plu)
 const min = document.getElementById('min'); // min (MINusz rövidítés) | HTML -> regist-t.component.html -> [button id] (min)
 const szakContainer = document.getElementById('szak-container'); // szakContainer | HTML -> regist-t.compoinent.html -> [div id] (szak-container)
-const szakNumber = document.getElementById('szak-number');
 
 // plusz gomb funkciója
 // (hozzáad egy [új szak megadása] beviteli mezőt )
 function plusButton(){
     const inputs = szakContainer.querySelectorAll('input');
-    const Num = inputs.length; // A beviteli mezők száma
-    if (Num < 10) {
+    if (inputs.length < 10) {
         const ujSzak = document.createElement('input'); // létrehoz egy ujSzak nevű inputot.
         // [ujSzak] input mező paraméterei:
         ujSzak.type= "text";

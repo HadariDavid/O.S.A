@@ -42,3 +42,7 @@ button {
 button:hover {
     background-color: #ffbb3b;
 }
+
+div.bg-white{
+    background-color: #ffffff;
+}

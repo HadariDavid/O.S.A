@@ -1,6 +1,11 @@
+a{
+    border-radius: 20px;
+}
 a:hover{
     background-color: #ffa600;
     font-weight: bold;
+    border-radius: 20px;
+    transition: 0.5s;
 }
 
 li{

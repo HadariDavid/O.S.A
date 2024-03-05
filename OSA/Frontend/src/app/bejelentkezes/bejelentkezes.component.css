@@ -1,3 +1,7 @@
+.container{
+    overflow: hidden;
+}
+
 .login-form {
     max-width: 400px;
     margin: 100px auto;
