@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Feb 19. 15:49
+-- Létrehozás ideje: 2024. Már 05. 08:06
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -33,6 +33,7 @@ CREATE TABLE `tanaradatlap` (
   `osztalyId` varchar(5) NOT NULL,
   `csaladNev` text NOT NULL,
   `keresztNev` text NOT NULL,
+  `neme` text NOT NULL,
   `szuletesiHely` text NOT NULL,
   `szuletesiDatum` date NOT NULL,
   `szuletesiOrszag` text NOT NULL,
@@ -41,6 +42,7 @@ CREATE TABLE `tanaradatlap` (
   `telefon` varchar(12) NOT NULL,
   `email` varchar(30) NOT NULL,
   `anyjaleanyneve` text NOT NULL,
+  `szemelyi` varchar(8) NOT NULL,
   `lakcim` varchar(30) NOT NULL,
   `taj` int(9) NOT NULL,
   `adoszam` int(10) NOT NULL,
@@ -52,7 +54,7 @@ CREATE TABLE `tanaradatlap` (
   `jogviszonyKezdete` date NOT NULL,
   `jogviszonyVartVege` date NOT NULL,
   `jogviszony` text NOT NULL,
-  `szakok` text NOT NULL
+  `szak(ok)` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
