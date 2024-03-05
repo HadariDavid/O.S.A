@@ -5,6 +5,8 @@ import { AdminComponent } from './admin/admin.component';
 import { RegistTComponent } from './regist-t/regist-t.component';
 import { RegistDComponent } from './regist-d/regist-d.component';
 import { TanarComponent } from './tanar/tanar.component';
+import { Component } from '@angular/core';
+import { DiakComponent } from './diak/diak.component';
 
 export const routes: Routes = [
     {
@@ -43,6 +45,14 @@ export const routes: Routes = [
         path: "tanar",
         title: "OSA | Tanár",
         component:TanarComponent
+    },
+
+
+
+    {
+        path: "diak",
+        title: "OSA | Diák",
+        component:DiakComponent
     },
 
 
