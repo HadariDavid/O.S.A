@@ -1,8 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-regist-t',
+  standalone: true,
+  imports: [HeaderComponent],
   templateUrl: './regist-t.component.html',
   styleUrls: ['./regist-t.component.css']
 })

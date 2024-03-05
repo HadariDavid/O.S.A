@@ -45,4 +45,17 @@ img{
     padding-bottom: 10%;
     width: 50%;
     height: 50%;
+    transition: 0.5s;
+}
+img:hover{
+    scale: 104%;
+    transition: 0.5s;
+}
+
+button{
+    transition: 0.5s;
+}
+button:hover{
+    transition: 0.5s;
+    scale: 102%;
 }

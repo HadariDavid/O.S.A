@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-regist-d',
   standalone: true,
-  imports: [],
+  imports: [HeaderComponent],
   templateUrl: './regist-d.component.html',
   styleUrl: './regist-d.component.css'
 })

@@ -3,6 +3,7 @@ body{
     padding: 0px;
     height: 100vh;
     position: relative;
+    overflow-x: hidden;
 }
 
 body::before{
@@ -14,6 +15,6 @@ body::before{
     height: 100%;
     content: "";
     position: fixed;
-    background: linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(255,255,255,0) 45%);
+    background: linear-gradient(0deg, rgba(253,187,45,1) 0%, rgba(255,255,255,0) 30%);
     z-index: -1;
 }

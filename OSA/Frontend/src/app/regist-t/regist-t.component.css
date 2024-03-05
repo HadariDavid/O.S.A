@@ -49,7 +49,7 @@
     color: #000000;
     cursor: pointer;
     font-weight: bold;
-    float:right;
+    float: right;
     overflow: hidden;
 }
 
@@ -151,4 +151,29 @@ input:checked + .slider:before {
 
 .login-form button.addBtn:hover {
     background-color: #ffbb3b;
+}
+
+#plu{
+    transition: 0.5s;   
+}
+#plu:hover{
+    transition: 0.5s;
+    scale: 102%;
+}
+
+
+#min{
+    transition: 0.5s;   
+}
+#min:hover{
+    transition: 0.5s;
+    scale: 102%;
+}
+
+button{
+    transition: 0.5s;
+}
+button:hover{
+    transition: 0.5s;
+    scale: 102%;
 }

@@ -1,5 +1,6 @@
 a{
     border-radius: 20px;
+    transition: 0.5s;
 }
 a:hover{
     background-color: #ffa600;

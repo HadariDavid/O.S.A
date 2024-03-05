@@ -4,13 +4,11 @@ table{
 
 .orarend th{
     border: 2px solid #ffa600;
-    padding: 4px;
-    border-radius: 20px;
+    padding: 2px;
 }
 .orarend td{
     border: 2px solid #ffa600;
-    padding: 4px;
-    border-radius: 20px;
+    padding: 2px;
 }
 
 .container{
