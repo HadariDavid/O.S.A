@@ -1,3 +1,6 @@
+// test token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJTw6FuZG9yIiwidXNlcklEIjoiMTIzNDU2Nzg5IiwiaWF0IjoxNzA5NjMyMTE2fQ.0wRjQy2XQsd_cS3vn4l5m1nFDtCT2tnaOOBA_wYxoDs
+
+
 //könyvtárak
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -16,9 +19,10 @@ const DiakadatlapModel = require("./dbModels/diakadatlap.model");
 
 //route-k
 const logRegRouter = require("./routes/loginRegisterRoute");
-const hitelesitesRouter = require("./routes/hitelesitesRoute");
+const adatmodositasRouter = require("./routes/adaModositasRoute");
 //////////////////////////////////////
 
+const {tokenHitelesites} = require ("./middleware/hitelesitesMiddle");
 
 const app = express();
 
@@ -52,7 +56,7 @@ sequelize.authenticate().then(() => {
 
 
 app.use("/", logRegRouter);
-app.use("/", hitelesitesRouter);
+app.use("/", adatmodositasRouter);
 //app.use("/", querryRouter);
 
 
