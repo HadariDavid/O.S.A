@@ -16,9 +16,9 @@ export interface registTObj{
     tAANevKozep: string;
     tANevKereszt: string;
 
-    tNem: boolean;
+    tNem: string;
 
-    tSzulIdo: Date;
+    tSzulIdo: string;
     tSzulHely: string;
 
     tCimOrszag: string;
@@ -40,7 +40,7 @@ export interface registTObj{
     tBank3: string;
 
     tjogviszony: string;
-    tjogviszonydatum: Date;
+    tjogviszonydatum: string;
 
 }
 

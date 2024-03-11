@@ -9,7 +9,7 @@
                 <div class="container">
                     <label>Tanár Neve:</label>
                     <div class="text-container">
-                        <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" required>
+                        <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" [(ngModel)]="authService.ujtanar.tNevVezetek" required >
                         <input type="text" class="form-control" placeholder="Középső Név (Nem kötelező)" title="Középső Név">
                         <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" required>
                     </div>
