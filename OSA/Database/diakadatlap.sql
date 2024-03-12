@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `diakadatlap` (
   `id` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `jelszo` varchar(100) NOT NULL,
   `osztalyId` varchar(5) DEFAULT NULL,
   `csaladNev` text DEFAULT NULL,
   `keresztNev` text DEFAULT NULL,
