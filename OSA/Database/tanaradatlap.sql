@@ -54,7 +54,7 @@ CREATE TABLE `tanaradatlap` (
   `jogviszonyKezdete` date NOT NULL,
   `jogviszonyVartVege` date NOT NULL,
   `jogviszony` text NOT NULL,
-  `szak(ok)` text NOT NULL
+  `szakok` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
