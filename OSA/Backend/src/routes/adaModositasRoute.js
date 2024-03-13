@@ -17,6 +17,7 @@ const modositasController = require("../controllers/adatmodositasController");
 //metódusok
 modositasRouter.get("/adatmodositas",/*tokenHitelesites,*/ modositasController.getUser);
 modositasRouter.patch("/adatmodositas",/*tokenHitelesites,*/ modositasController.patchUser);
+modositasRouter.delete("/adatmodositas",/*tokenHitelesites,*/modositasController.deleteUser)
 
 
 

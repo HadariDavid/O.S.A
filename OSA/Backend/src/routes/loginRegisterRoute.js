@@ -18,6 +18,6 @@ const logRegController = require("../controllers/loginRegisterController");
 logRegRouter.get("/logout",tokenHitelesites, logRegController.logout);
 logRegRouter.post("/login", logRegController.login);
 logRegRouter.put("/registration/student",tokenHitelesites, logRegController.registStudent);
-logRegRouter.put("/registration/teacher",tokenHitelesites,logRegController.registTeacher);
+logRegRouter.put("/registration/teacher",tokenHitelesites, logRegController.registTeacher);
 
 module.exports = logRegRouter;
