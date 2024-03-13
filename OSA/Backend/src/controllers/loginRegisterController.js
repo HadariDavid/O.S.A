@@ -122,7 +122,7 @@ function logout(req,res){
     
 
 
-const blacktoken = BlacklistModel.build({token : req.body.token,exp});
+const blacktoken = BlacklistModel.build({token : req.body.token});
 blacktoken.save().then(()=>{
     return res.status(200).json({
         status:"succes",

@@ -55,10 +55,10 @@ sequelize.authenticate().then(() => {
 //blacklist ellenörzés
 
 nodeCron.schedule('*/1 * * * *', () => {
-    if(1710323481>Date.now()){
-        console.log("date nagyobb")
-    }else{
+    if(1710324938>(Date.now()/1000)){
         console.log("asd")
+    }else{
+        console.log("date nagyobb")
     }
 },{
     scheduled:true,
