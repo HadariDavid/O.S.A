@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 //modellek
 const TanaradatlapModel = require("../dbModels/tanaradatlap.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
+const BlacklistModel = require("../dbModels/blacklist.model");
 
 ///////////////////////////////////////////////////
 
@@ -79,7 +80,7 @@ async function adatLekérdez(model, adat, keres){
                     userID: existingUser.id
                 }
             //token egy óráig tart 
-            var token = jwt.sign(payload, jwtSecretKey, {expiresIn:"1h"});
+            var token = jwt.sign(payload, jwtSecretKey, {expiresIn:"3m"});
             }catch(error){
                 console.log(error);
                 return res.status(520).json({
@@ -110,6 +111,25 @@ async function adatLekérdez(model, adat, keres){
 
 
 function logout(req,res){
+
+    if(req.body.token === undefined){
+        return res.status(400).json({
+            status:"error",
+            message:"nincs bejelentkezve felhasználó"
+        })
+    }
+
+    
+
+
+const blacktoken = BlacklistModel.build({token : req.body.token,exp});
+blacktoken.save().then(()=>{
+    return res.status(200).json({
+        status:"succes",
+        message:"sikeres kijelentkezés"
+    });
+});
+
    
 }
 

@@ -32,7 +32,6 @@ dotenv.config();
             res.status(200).json(
             {
                 success: true,
-                email: decodedToken.email
                 });
          next();
         }else{

@@ -1,5 +1,3 @@
-// test token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJTw6FuZG9yIiwidXNlcklEIjoiMTIzNDU2Nzg5IiwiaWF0IjoxNzA5NjMyMTE2fQ.0wRjQy2XQsd_cS3vn4l5m1nFDtCT2tnaOOBA_wYxoDs
-
 
 //könyvtárak
 const express = require("express");
@@ -7,7 +5,8 @@ const bodyParser = require("body-parser");
 const sequelize = require("./db");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-
+const nodeCron = require("node-cron");
+////////////////////////////////////////////////////////////////
 
 //modellek
 const TeremModel = require("./dbModels/termek.model");
@@ -15,14 +14,13 @@ const TanaradatlapModel = require("./dbModels/tanaradatlap.model");
 const TantargyModel = require("./dbModels/tantargyak.model")
 const OsztalyzatModel = require("./dbModels/osztalyzat.model");
 const DiakadatlapModel = require("./dbModels/diakadatlap.model");
+const BlacklistModel = require("./dbModels/blacklist.model");
 //////////////////////////////////////
 
 //route-k
 const logRegRouter = require("./routes/loginRegisterRoute");
 const adatmodositasRouter = require("./routes/adaModositasRoute");
 //////////////////////////////////////
-
-const {tokenHitelesites} = require ("./middleware/hitelesitesMiddle");
 
 const app = express();
 
@@ -43,6 +41,7 @@ sequelize.authenticate().then(() => {
     sequelize.modelManager.addModel(TantargyModel);
     sequelize.modelManager.addModel(OsztalyzatModel);
     sequelize.modelManager.addModel(DiakadatlapModel);
+    sequelize.modelManager.addModel(BlacklistModel);
     sequelize.sync();
 
 }).catch((error) => {
@@ -52,6 +51,21 @@ sequelize.authenticate().then(() => {
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
+
+//blacklist ellenörzés
+
+nodeCron.schedule('*/1 * * * *', () => {
+    if(1710323481>Date.now()){
+        console.log("date nagyobb")
+    }else{
+        console.log("asd")
+    }
+},{
+    scheduled:true,
+    timezone:"Europe/Budapest"
+});
+
+//////////////////////////////////////////////////////////////////////
 
 
 
