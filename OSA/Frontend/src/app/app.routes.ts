@@ -5,10 +5,11 @@ import { AdminComponent } from './admin/admin.component';
 import { RegistTComponent } from './regist-t/regist-t.component';
 import { RegistDComponent } from './regist-d/regist-d.component';
 import { TanarComponent } from './tanar/tanar.component';
-import { Component } from '@angular/core';
 import { DiakComponent } from './diak/diak.component';
+import { AdatokTComponent } from './tanar/adatok-t/adatok-t.component';
 
 export const routes: Routes = [
+    // Főoldal - alap
     {
         path: "",
         title: "OSA | Bejelentkezes",
@@ -16,39 +17,50 @@ export const routes: Routes = [
     },
 
 
-    
+
+    // Főoldal
     {
         path: "bejelentkezes",
         title: "OSA | Bejelentkezes",
         component:BejelentkezesComponent
     },
 
+
+
+    //Admin oldal
     {
         path: "admin",
         title: "OSA | ADMIN",
         component:AdminComponent
     },
-        {
+        { // Tanár regisztrációs felület
             path: "admin/regist-t",
             title: "Tanár Regisztrálás",
             component:RegistTComponent
         },
-        {
+        {// Diák regisztrációs felület
             path: "admin/regist-d",
             title: "Diák Regisztrálás",
             component:RegistDComponent
         },
 
-    
 
+    
+    // Tanár felhasználói felület
     {
         path: "tanar",
         title: "OSA | Tanár",
         component:TanarComponent
     },
+        { // Profiladatok
+            path: "tanar/adatok",
+            title: "Tanár | Profiladatok",
+            component:AdatokTComponent
+        },
 
 
 
+    // Diák felhasználói felület
     {
         path: "diak",
         title: "OSA | Diák",
@@ -56,6 +68,8 @@ export const routes: Routes = [
     },
 
 
+
+    // Error 404 oldal
     {
         path: "**",
         title: "Error - 404",

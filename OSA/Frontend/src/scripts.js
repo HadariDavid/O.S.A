@@ -20,6 +20,7 @@ function plusButton(){
         ujSzak.required = true;
         ujSzak.maxLength = "128";
         ujSzak.style = "width: 55%; padding: 10px; margin-bottom: 20px; margin-left: 0.5%; margin-right: 0.5%; border: 3px solid #ffa600; border-radius: 5px;"
+        ujSzak.ngModel = "ujtanar.szak"
         szakContainer.appendChild(ujSzak);
         console.log("PLUS");
     }

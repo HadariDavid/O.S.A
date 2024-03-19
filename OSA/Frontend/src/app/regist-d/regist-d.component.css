@@ -31,7 +31,9 @@
 .login-form input[type="text"].long {
     width: 30%;
 }
-
+.login-form input[type="text"].ex-long {
+    width: 55%;
+}
 
 
 /* FORM GOMB BEÁLLÍTÁSOK */

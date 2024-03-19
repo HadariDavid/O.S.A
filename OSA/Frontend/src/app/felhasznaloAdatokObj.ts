@@ -1,95 +1,95 @@
 export interface bejelentkezesObj{
-    felhasznaloNev: string;
-    azonosito: string;
+    id: string;
     jelszo: string;
 }
 
 export interface registTObj{
-    tNevVezetek: string;
-    tNevKozep: string;
-    tNevKereszt: string;
+    csaladNev: string;
+    keresztNev: string;
 
-    tTel: string;
-    tEMail: string;
+    telefon: string;
+    email: string;
 
-    tANevVezetek: string
-    tAANevKozep: string;
-    tANevKereszt: string;
+    anyaLeanyVezetekneve: string;
+    anyaLeanyKeresztneve: string;
 
-    tNem: string;
+    neme: string;
 
-    tSzulIdo: string;
-    tSzulHely: string;
+    szuletesiDatum: string;
+    szuletesiOrszag: string;
+    szuletesiHely: string;
 
-    tCimOrszag: string;
-    tCimIranyitoSzam: string;
-    tCimKozseg: string;
-    tCímUt: string;
-    tCimHazSzam: string;
+    orszag: string;
+    iranyitoSzam: string;
+    kozseg: string;
+    ut: string;
+    hazSzam: string;
 
-    tAllampolgarsag: string;
-    tAnyanyelv: string;
+    allampolgarsag: string;
+    anyanyelv: string;
 
-    tSzemelyIgazolvany: string;
-    tAzonosito: string;
-    tTAJ: string;
-    tAdozonosito: string;
+    szemelyi: string;
+    oktatasiAzonosito: string;
+    adoszam: string;
+    taj: string;
 
-    tBank1: string;
-    tBank2: string;
-    tBank3: string;
+    bankszamlaSzam: string;
 
-    tjogviszony: string;
-    tjogviszonydatum: string;
+    jogviszony: string;
+    jogviszonyKezdete: string;
+    jogviszonyVartVege: string;
+
+    szakok: string;
+
+    egyeb: string;
 
 }
 
 export interface registDObj{
-    dNevVezetek: string;
-    dNevKozep: string;
-    dNevKereszt: string;
-    dTel: string;
-    dEMail: string;
+    csaladNev: string;
+    keresztNev: string;
+    telefon: string;
+    email: string;
 
-    dANevVezetek: string
-    dAANevKozep: string;
-    dANevKereszt: string;
-    dATel: string;
-    dAEMail: string;
+    anyaLeanyVezetekneve: string;
+    anyaLeanyKeresztneve: string;
+    anyaTelefonszam: string;
+    anyaEmail: string;
 
-    dGNevVezetek: string
-    dGANevKozep: string;
-    dGNevKereszt: string;
-    dGTel: string;
-    dGEMail: string;
+    gondviseloVezetekneve: string;
+    gondviseloKeresztneve: string;
+    gondviseloTelefon: string;
+    gondviseloEmail: string;
 
-    dNem: boolean;
+    neme: string;
 
-    dSzulIdo: Date;
-    dSzulHely: string;
+    szuletesiDatum: string;
+    szuletesiOrszag: string;
+    szuletesiHely: string;
 
-    dCimOrszag: string;
-    dCimIranyitoSzam: string;
-    dCimKozseg: string;
-    dCímUt: string;
-    dCimHazSzam: string;
+    orszag: string;
+    iranyitoSzam: string;
+    kozseg: string;
+    ut: string;
+    hazSzam: string;
 
-    dAllampolgarsag: string;
-    dAnyanyelv: string;
+    allampolgarsag: string;
+    anyanyelv: string;
 
-    dSzemelyIgazolvany: string;
-    dAzonosito: string;
-    dTAJ: string;
-    dAdozonosito: string;
+    szemelyi: string;
+    oktatasiAzonosito: string;
+    taj: string;
+    adoszam: string;
 
-    dBank1: string;
-    dBank2: string;
-    dBank3: string;
+    bankszamlaSzam: string;
 
-    djogviszony: string;
-    djogviszonydatum: Date;
+    jogviszony: string;
+    jogviszonyKezdete: string;
+    jogviszonyVartVege: string;
 
-    dKepzes: string;
-    dOsztaly: string;
+    kepzes: string;
+    osztalyId: string;
+
+    egyeb: string;
 
 }
