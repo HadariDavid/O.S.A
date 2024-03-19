@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const sequelize = require("./db");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+var cors = require('cors')
 
 
 //modellek
@@ -29,6 +30,8 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
+app.use(cors())
+
 
 dotenv.config();
 
