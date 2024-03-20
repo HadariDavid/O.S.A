@@ -54,6 +54,8 @@ export class RegistTComponent {
     szakok:'',
 
     egyeb: '',
+
+    admin: false,
   }
 
   isDisabled: boolean = true;

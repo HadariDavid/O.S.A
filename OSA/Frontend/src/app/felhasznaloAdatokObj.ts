@@ -43,6 +43,8 @@ export interface registTObj{
 
     egyeb: string;
 
+    admin: boolean;
+
 }
 
 export interface registDObj{

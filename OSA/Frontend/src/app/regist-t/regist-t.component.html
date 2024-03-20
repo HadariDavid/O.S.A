@@ -124,6 +124,11 @@
                     <div class="text-container">
                         <input type="text" class="form-control ex-long" placeholder="Egyéb információk" title="Egyéb információk" maxlength="200" [(ngModel)]="ujtanar.egyeb">
                     </div>
+                    <label>Admin? [ Nem / Igen ]</label><br>
+                    <label class="switch">
+                        <input type="checkbox" id="admin-Switch" [(ngModel)]="ujtanar.admin">
+                        <span class="slider"></span>
+                    </label>
                 </div>
                 <button type="submit" class="btn btn-primary" (click)="regisztralasGomb()">Tanár Regisztrálása</button>
         </div>

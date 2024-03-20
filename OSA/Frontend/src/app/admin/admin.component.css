@@ -72,3 +72,7 @@ li.warning:hover{
     transition: 0.5s;
     scale: 102%;
 }
+
+p{
+    font-size: small;
+}

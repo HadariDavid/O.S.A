@@ -7,6 +7,7 @@ import { RegistDComponent } from './regist-d/regist-d.component';
 import { TanarComponent } from './tanar/tanar.component';
 import { DiakComponent } from './diak/diak.component';
 import { AdatokTComponent } from './tanar/adatok-t/adatok-t.component';
+import { OrarendTComponent } from './tanar/orarend-t/orarend-t.component';
 
 export const routes: Routes = [
     // Főoldal - alap
@@ -56,6 +57,11 @@ export const routes: Routes = [
             path: "tanar/adatok",
             title: "Tanár | Profiladatok",
             component:AdatokTComponent
+        },
+        { // Orarend
+            path: "tanar/orarend",
+            title: "Tanár | Órarend",
+            component:OrarendTComponent
         },
 
 
