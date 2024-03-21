@@ -9,11 +9,12 @@ const jwt = require('jsonwebtoken');
 //modellek
 const TanaradatlapModel = require("../dbModels/tanaradatlap.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
-const BlacklistModel = require("../dbModels/blacklist.model");
+const FeketeListaModel = require("../dbModels/feketelista.model");
 
 ///////////////////////////////////////////////////
 
 const { where } = require("sequelize");
+
 
 ///////////////////////////////////////////
 
@@ -80,7 +81,7 @@ async function adatLekérdez(model, adat, keres){
                     userID: existingUser.id
                 }
             //token egy óráig tart 
-            var token = jwt.sign(payload, jwtSecretKey, {expiresIn:"3m"});
+            var token = jwt.sign(payload, jwtSecretKey, {expiresIn:"50m"});
             }catch(error){
                 console.log(error);
                 return res.status(520).json({
@@ -109,22 +110,31 @@ async function adatLekérdez(model, adat, keres){
 
 ////////////////////////////////////////////kijelentkezés/////////////////////////////////////////////////////
 
-
+ let zsidé = 0;
 function logout(req,res){
 
-    if(req.body.token === undefined){
+   
+    if(zsidé === 999999999){
+        zsidé = 1;
+    }
+
+    const token = req.headers.authorization.split(' ')[1];
+    const {exp} = jwt.decode(token);
+
+    if(token === undefined){
         return res.status(400).json({
             status:"error",
             message:"nincs bejelentkezve felhasználó"
         })
     }
 
-    
 
-
-const blacktoken = BlacklistModel.build({token : req.body.token});
+console.log(zsidé);
+const blacktoken =FeketeListaModel.build({id:zsidé, token: token, exp: exp});
+zsidé = zsidé+1;
+console.log(zsidé);
 blacktoken.save().then(()=>{
-    return res.status(200).json({
+         res.status(200).json({
         status:"succes",
         message:"sikeres kijelentkezés"
     });

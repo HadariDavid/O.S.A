@@ -15,9 +15,9 @@ const logRegRouter = express.Router();
 const logRegController = require("../controllers/loginRegisterController");
 
 //metódusok
-logRegRouter.post("/logout",tokenHitelesites, logRegController.logout);
-logRegRouter.post("/login", logRegController.login);
-logRegRouter.put("/registration/student",tokenHitelesites, logRegController.registStudent);
-logRegRouter.put("/registration/teacher",tokenHitelesites, logRegController.registTeacher);
+logRegRouter.post("/kijelentkezes",tokenHitelesites, logRegController.logout);
+logRegRouter.post("/bejelentkezes", logRegController.login);
+logRegRouter.put("/admin/regist-d",tokenHitelesites, logRegController.registStudent);
+logRegRouter.put("/admin/regist-t",/*tokenHitelesites,*/ logRegController.registTeacher);
 
 module.exports = logRegRouter;

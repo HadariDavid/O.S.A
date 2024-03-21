@@ -15,9 +15,9 @@ const modositasRouter = express.Router();
 const modositasController = require("../controllers/adatmodositasController");
 
 //metódusok
-modositasRouter.get("/adatmodositas",/*tokenHitelesites,*/ modositasController.getUser);
-modositasRouter.patch("/adatmodositas",/*tokenHitelesites,*/ modositasController.patchUser);
-modositasRouter.delete("/adatmodositas",/*tokenHitelesites,*/modositasController.deleteUser)
+modositasRouter.get("/admin/adatmodositas",tokenHitelesites, modositasController.getUser);
+modositasRouter.patch("/admin/adatmodositas",tokenHitelesites,modositasController.patchUser);
+modositasRouter.delete("/admin/adatmodositas",tokenHitelesites,modositasController.deleteUser)
 
 
 

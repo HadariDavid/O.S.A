@@ -4,9 +4,14 @@ const jwt = require('jsonwebtoken');
 
 /////////////////////////////////////////
 
+//modellek
+const FeketeListaModel = require("../dbModels/feketelista.model");
+
+/////////////////////////////////////////
 
 
-function tokenHitelesites(req, res, next){
+
+async function tokenHitelesites(req, res, next){
 dotenv.config();
 
     let jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -15,7 +20,7 @@ dotenv.config();
         const token = req.headers.authorization.split(' ')[1];
         //check for token
         if (!token) {
-            res.status(401)
+            return res.status(401)
                 .json(
                     {
                         success: false,
@@ -24,23 +29,27 @@ dotenv.config();
                 );
         }
 
-
-        const decodedToken = jwt.verify(token, jwtSecretKey);
-        if(decodedToken){
-
-           
-            res.status(200).json(
-            {
-                success: true,
-                });
-         next();
-        }else{
-            return res.status(520).json({
+        if(await FeketeListaModel.findOne({where:{token:token}}) !== null){
+           return res.status(401).json({
                 error:true,
-                message:"hitelesítés közben hiba történt",
-                type:1 //token nem hitelesíthető
-            });
+                messagüzenet:"hozzáférés megtagadva (blacklisted)"
+            })
         }
+            
+        const decodedToken = jwt.verify(token, jwtSecretKey);
+            if(decodedToken){
+            next();
+            }else{
+                return res.status(520).json({
+                    error:true,
+                    message:"hitelesítés közben hiba történt",
+                    type:1 //token nem hitelesíthető
+                });
+            }
+        
+
+
+        
 
     }catch(error){
         console.log(error);

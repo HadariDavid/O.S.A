@@ -2,11 +2,11 @@ const {DataTypes} = require("sequelize");
 
 const sequelize = require("../db");
 
-const Blacklist = sequelize.define("Blacklist", {
+const FeketeLista = sequelize.define("FeketeLista", {
     id:{
         type:DataTypes.INTEGER,
+        allowNull:false,
         primaryKey:true,
-        autoIncrement:true
     },
     token:{
         type:DataTypes.STRING,
@@ -18,8 +18,8 @@ const Blacklist = sequelize.define("Blacklist", {
     }
 
 },{
-    tablename:"blacklist",
+    tablename:"feketelista",
     timestamps:false,
 });
 
-module.exports = Blacklist;
+module.exports = FeketeLista;
