@@ -29,6 +29,10 @@ const Diakadatlap = sequelize.define("Diakadatlap", {
     allowNull:false,
     comment:"Tanuló keresztneve"
   },
+  neme:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
   szuletesiHely :{
     type: DataTypes.STRING,
     allowNull:false,
@@ -64,15 +68,21 @@ const Diakadatlap = sequelize.define("Diakadatlap", {
     allowNull:false,
     comment:"tanuló e-mail"
   },
-  anyjaleanyneve :{
-    type: DataTypes.STRING,
-    allowNull:false,
-    comment:"tanuló anyja leánykori neve"
+  AnyjaLeanyVezetekneve:{
+    type:DataTypes.STRING,
+    allowNull:false
   },
-  gondviseloNeve :{
-    type: DataTypes.STRING,
-    allowNull:false,
-    comment:"gondviselő neve"
+  AnyjaLeanyKeresztneve:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  GondviseloVezetekneve:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  GondviseloKeresztneve:{
+    type:DataTypes.STRING,
+    allowNull:false
   },
   gondviseloTelefon:{
     type: DataTypes.STRING,
@@ -84,10 +94,25 @@ const Diakadatlap = sequelize.define("Diakadatlap", {
     allowNull:true,
     comment:"gondviselő e-mail"
   },
-  lakcim :{
-    type: DataTypes.STRING,
+  Orszag:{
+    type:DataTypes.STRING,
     allowNull:false,
-    comment:"diák lakcíme"
+  },
+  Iranyitoszam:{
+    type:DataTypes.INTEGER,
+    allowNull:false,
+  },
+  Kozseg:{
+    type:DataTypes.STRING,
+    allowNull:false,
+  },
+  Ut:{
+    type:DataTypes.STRING,
+    allowNull:false,
+  },
+  Hazsam:{
+    type:DataTypes.INTEGER,
+    allowNull:false,
   },
   taj :{
     type: DataTypes.STRING,
@@ -115,10 +140,9 @@ const Diakadatlap = sequelize.define("Diakadatlap", {
     allowNull:false,
     comment:"órarendjének id-je"
   },
-  szerep :{
+  Kepzes :{
     type: DataTypes.STRING,
-    allowNull:false,
-    comment:"tanuló vagy tanár"
+    allowNull:false
   },
   jogviszonyKezdete :{
     type: DataTypes.STRING,
