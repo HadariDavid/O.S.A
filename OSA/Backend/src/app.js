@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const nodeCron = require("node-cron");
 const cors = require("cors");
+const { Op } = require("sequelize");
 ////////////////////////////////////////////////////////////////
 
 //modellek
@@ -16,12 +17,13 @@ const TantargyModel = require("./dbModels/tantargyak.model")
 const OsztalyzatModel = require("./dbModels/osztalyzat.model");
 const DiakadatlapModel = require("./dbModels/diakadatlap.model");
 const FeketeListaModel = require("./dbModels/feketelista.model");
+
 //////////////////////////////////////
 
 //route-k
 const logRegRouter = require("./routes/loginRegisterRoute");
 const adatmodositasRouter = require("./routes/adaModositasRoute");
-const { Op } = require("sequelize");
+
 //////////////////////////////////////
 
 const app = express();
