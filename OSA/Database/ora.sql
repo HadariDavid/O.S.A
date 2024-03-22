@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Feb 02. 09:04
+-- Létrehozás ideje: 2024. Már 22. 10:44
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -28,6 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ora` (
+  `osztaly` int(11) NOT NULL,
+  `nap` int(11) NOT NULL,
   `1ora` varchar(50) NOT NULL,
   `2ora` varchar(50) NOT NULL,
   `3ora` varchar(50) NOT NULL,
