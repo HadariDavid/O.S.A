@@ -273,7 +273,7 @@ var tanarKötAdatok = [
             "Iranyitoszam",
             "Kozseg",
             "Ut",
-            "Hazsam",
+            "Hazszam",
             "taj",
             "adoSzam",
             "bankszámlaszám",
@@ -328,7 +328,7 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             Iranyitoszam:req.body.Iranyitoszam,
             Kozseg:req.body.Kozseg,
             Ut:req.body.Ut,
-            Hazsam:req.body.Hazsam,
+            Hazszam:req.body.Hazszam,
             taj:req.body.taj,
             adoSzam:req.body.adoSzam,
             bankszámlaszám:req.body.bankszámlaszám,
@@ -340,7 +340,8 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             jogviszonyVartVege:req.body.jogviszonyVartVege,
             jogviszony:req.body.jogviszony,
             szakok: req.body.szakok,
-            jelszo: await hashData(req.body.jelszo)
+            jelszo: await hashData(req.body.jelszo),
+            admin:0
             
             });
             console.log(tanar.toJSON());

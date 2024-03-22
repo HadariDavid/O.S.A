@@ -91,7 +91,7 @@ const Tanaradatlap = sequelize.define("Tanardatlap", {
     type:DataTypes.STRING,
     allowNull:false,
   },
-  Hazsam:{
+  Hazszam:{
     type:DataTypes.INTEGER,
     allowNull:false,
   },
