@@ -140,15 +140,58 @@ async function patchUser(req,res){
                             })
                     });
                     
+            } else{
+                res.status(404).json({
+                    status:"succes",
+                    message:"Nincs ilyen felhasználó"
+                })
             }
         }catch(error){
-        console.log(error);
-        return
+            console.log(error);
+            return res.status(520).json({
+                status:"error",
+                message:"váratlan hiba",
+                cause:error
+            })
+
+        
     }
+}
+
+function deleteUser(req,res){
+    try{
+        DiakadatlapModel.findOne({
+            where:{
+                id:req.body.id
+            }
+        }).then((diak) => {
+                if(diak === null){
+                    TanaradatlapModel.findOne({
+                        where:{
+                            id:req.body.id
+                        }
+                    }).then((tanar) => {
+                        tanar.destroy();
+                        res.status(200).json({
+                            status:"succes",
+                            message:"sikeres törlés"
+                          
+                        })
+                });
+            }else{
+                 diak.destroy();
+                 res.status(200).json({
+                    status:"succes",
+                    message:"sikeres törlés"
+                })
+            }
+        })
+    }catch(error){
+        console.log(error);
+    }   
 }
 
 
 
 
-
-module.exports = {getUser, patchUser};
+module.exports = {getUser, patchUser, deleteUser};
