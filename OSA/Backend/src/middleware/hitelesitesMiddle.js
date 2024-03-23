@@ -1,5 +1,4 @@
 //könyvtárak
-const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 
 /////////////////////////////////////////
@@ -9,12 +8,10 @@ const FeketeListaModel = require("../dbModels/feketelista.model");
 
 /////////////////////////////////////////
 
+const {jwtSecretKey, tokenHeaderKey} = require("../app");
 
 
 async function tokenHitelesites(req, res, next){
-dotenv.config();
-
-    let jwtSecretKey = process.env.JWT_SECRET_KEY;
 
     try{
         const token = req.headers.authorization.split(' ')[1];
