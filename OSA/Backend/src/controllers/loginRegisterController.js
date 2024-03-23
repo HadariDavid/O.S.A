@@ -1,8 +1,8 @@
 //könyvtárak
 const sequelize = require("../db");
 const bcrypt = require("bcrypt");
-const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+const { where } = require("sequelize");
 
 ///////////////////////////////////////////////////
 
@@ -13,10 +13,7 @@ const FeketeListaModel = require("../dbModels/feketelista.model");
 
 ///////////////////////////////////////////////////
 
-const { where } = require("sequelize");
-
-
-///////////////////////////////////////////
+const {jwtSecretKey, tokenHeaderKey} = require("../app");
 
 
 //adat lekódolás
@@ -25,20 +22,6 @@ async function hashData(data){
     return await bcrypt.hash(data, 13);
 }
 
-
-//adatlekérdezés (megmarad? nem tudom)
-async function adatLekérdez(model, adat, keres){
-
-    const whereParameterek = {};
-    whereParameterek[adat] = keres;
-
-    const modelData = model.findAll({
-         where: whereParameterek
-     });
- 
-     return await modelData;
-    
-}
 
 
 ///////////////////////////////////////bejelentkezés////////////////////////////////////////////////////////
@@ -73,8 +56,7 @@ async function adatLekérdez(model, adat, keres){
         //ha a felhasználóhoz elküldött jelszó is egyezik generálja le a tokent
         if (await bcrypt.compare(jelszo, existingUser.jelszo) === true) {
             //generate JWToken 
-            let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-            let jwtSecretKey = process.env.JWT_SECRET_KEY;
+
             try{
                 let payload = {
                     nev : existingUser.keresztNev,
@@ -273,7 +255,7 @@ var tanarKötAdatok = [
             "Iranyitoszam",
             "Kozseg",
             "Ut",
-            "Hazsam",
+            "Hazszam",
             "taj",
             "adoSzam",
             "bankszámlaszám",
@@ -328,7 +310,7 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             Iranyitoszam:req.body.Iranyitoszam,
             Kozseg:req.body.Kozseg,
             Ut:req.body.Ut,
-            Hazsam:req.body.Hazsam,
+            Hazszam:req.body.Hazszam,
             taj:req.body.taj,
             adoSzam:req.body.adoSzam,
             bankszámlaszám:req.body.bankszámlaszám,
@@ -340,7 +322,8 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             jogviszonyVartVege:req.body.jogviszonyVartVege,
             jogviszony:req.body.jogviszony,
             szakok: req.body.szakok,
-            jelszo: await hashData(req.body.jelszo)
+            jelszo: await hashData(req.body.jelszo),
+            admin:0
             
             });
             console.log(tanar.toJSON());
