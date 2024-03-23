@@ -4,10 +4,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const sequelize = require("./db");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
 const nodeCron = require("node-cron");
 const cors = require("cors");
 const { Op } = require("sequelize");
+const bcrypt = require("bcrypt");
+
 ////////////////////////////////////////////////////////////////
 
 //modellek
@@ -26,13 +27,15 @@ const adatmodositasRouter = require("./routes/adaModositasRoute");
 
 //////////////////////////////////////
 
+const tokenHeaderKey = "FejedIsMilyenTeGyász";
+const jwtSecretKey = "ARááákEgyeKiALeskelődőSzemed";
+
+
 const app = express();
 
 const PORT = 3000;
 
 app.use(bodyParser.json());
-
-dotenv.config();
 
 app.use(cors());
 
@@ -57,6 +60,7 @@ sequelize.authenticate().then(() => {
 ///////////////////////////////////////////////////////////////////////////////////////
 
 
+
 //blacklist ellenörzés
 
 
@@ -72,9 +76,6 @@ sequelize.authenticate().then(() => {
             timezone:"Europe/Budapest"
         });
 
-
-
-
 //////////////////////////////////////////////////////////////////////
 
 
@@ -89,4 +90,6 @@ app.listen(PORT, () => {
     console.log(`A szerver elindult a http://localhost:${PORT} -es porton!`);
 });
 
+
+module.exports={jwtSecretKey, tokenHeaderKey};
 
