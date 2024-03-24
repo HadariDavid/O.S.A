@@ -5,6 +5,7 @@ const express = require("express");
 
 //middleware
 const {tokenHitelesites} = require ("../middleware/hitelesitesMiddle");
+const {adminHitelesites} = require("../middleware/hitelesitesMiddle");
 
 ////////////////////////////
 
@@ -17,7 +18,7 @@ const logRegController = require("../controllers/loginRegisterController");
 //metódusok
 logRegRouter.post("/kijelentkezes",tokenHitelesites, logRegController.logout);
 logRegRouter.post("/bejelentkezes", logRegController.login);
-logRegRouter.put("/admin/regist-d",tokenHitelesites, logRegController.registStudent);
-logRegRouter.put("/admin/regist-t",/*tokenHitelesites,*/ logRegController.registTeacher);
+logRegRouter.put("/admin/regist-d",adminHitelesites, logRegController.registStudent);
+logRegRouter.put("/admin/regist-t",/*adminHitelesites*/ logRegController.registTeacher);
 
 module.exports = logRegRouter;

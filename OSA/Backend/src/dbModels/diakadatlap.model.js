@@ -110,9 +110,13 @@ const Diakadatlap = sequelize.define("Diakadatlap", {
     type:DataTypes.STRING,
     allowNull:false,
   },
-  Hazsam:{
+  Hazszam:{
     type:DataTypes.INTEGER,
     allowNull:false,
+  },
+  szemelyi:{
+    type:DataTypes.STRING,
+    allowNull:false
   },
   taj :{
     type: DataTypes.STRING,

@@ -6,6 +6,8 @@ const express = require("express");
 //middleware
 const {tokenHitelesites} = require ("../middleware/hitelesitesMiddle");
 
+const {adminHitelesites} = require("../middleware/hitelesitesMiddle");
+
 ////////////////////////////
 
 //Router
@@ -15,9 +17,9 @@ const modositasRouter = express.Router();
 const modositasController = require("../controllers/adatmodositasController");
 
 //metódusok
-modositasRouter.get("/admin/adatmodositas",tokenHitelesites, modositasController.getUser);
-modositasRouter.patch("/admin/adatmodositas",tokenHitelesites,modositasController.patchUser);
-modositasRouter.delete("/admin/adatmodositas",tokenHitelesites,modositasController.deleteUser)
+modositasRouter.get("/admin/adatmodositas",adminHitelesites, modositasController.getUser);
+modositasRouter.patch("/admin/adatmodositas",adminHitelesites,modositasController.patchUser);
+modositasRouter.delete("/admin/adatmodositas",adminHitelesites,modositasController.deleteUser)
 
 
 
