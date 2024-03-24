@@ -27,9 +27,6 @@ const adatmodositasRouter = require("./routes/adaModositasRoute");
 
 //////////////////////////////////////
 
-const tokenHeaderKey = "FejedIsMilyenTeGyász";
-const jwtSecretKey = "ARááákEgyeKiALeskelődőSzemed";
-
 
 const app = express();
 
@@ -89,7 +86,3 @@ app.use("/", adatmodositasRouter);
 app.listen(PORT, () => {
     console.log(`A szerver elindult a http://localhost:${PORT} -es porton!`);
 });
-
-
-module.exports={jwtSecretKey, tokenHeaderKey};
-
