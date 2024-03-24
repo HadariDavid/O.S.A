@@ -13,7 +13,8 @@ const FeketeListaModel = require("../dbModels/feketelista.model");
 
 ///////////////////////////////////////////////////
 
-const {jwtSecretKey, tokenHeaderKey} = require("../app");
+const tokenHeaderKey = "FejedIsMilyenTeGyász";
+const jwtSecretKey = "ARááákEgyeKiALeskelődőSzemed";
 
 
 //adat lekódolás
@@ -56,12 +57,23 @@ async function hashData(data){
         //ha a felhasználóhoz elküldött jelszó is egyezik generálja le a tokent
         if (await bcrypt.compare(jelszo, existingUser.jelszo) === true) {
             //generate JWToken 
-
+        let payload;
             try{
-                let payload = {
-                    nev : existingUser.keresztNev,
-                    userID: existingUser.id
+                //ellenőrizzük hogy a felhasználónak van-e admin joga és azalapján állítjuk a token tartalmát
+                if(existingUser.admin === undefined){   
+                    payload = {
+                        nev : existingUser.vezeteknev +" "+existingUser.keresztNev,
+                        userID: existingUser.id,
+                        admin:0
+                    }
+                }else{
+                     payload = {
+                        nev : existingUser.keresztNev,
+                        userID: existingUser.id,
+                        admin: existingUser.admin
+                    }
                 }
+            
             //token egy óráig tart 
             var token = jwt.sign(payload, jwtSecretKey, {expiresIn:"50m"});
             }catch(error){
@@ -111,10 +123,8 @@ function logout(req,res){
     }
 
 
-console.log(zsidé);
 const blacktoken =FeketeListaModel.build({id:zsidé, token: token, exp: exp});
 zsidé = zsidé+1;
-console.log(zsidé);
 blacktoken.save().then(()=>{
          res.status(200).json({
         status:"succes",
@@ -151,8 +161,8 @@ async function registStudent(req, res){
     "Iranyitoszam",
     "Kozseg",
     "Ut",
-    "Hazsam",
-    "személyi",
+    "Hazszam",
+    "szemelyi",
     "taj",
     "adoSzam",
     "Kepzes",
@@ -201,10 +211,11 @@ Object.values(tanulóKötAdatok).forEach((element)=>{
             Iranyitoszam:req.body.Iranyitoszam,
             Kozseg:req.body.Kozseg,
             Ut:req.body.Ut,
-            Hazsam:req.body.Hazsam,
+            Hazszam:req.body.Hazszam,
             gondviseloTelefon:req.body.gondviseloTelefon,
             gondviseloEmail:req.body.gondviseloEmail,
             taj:req.body.taj,
+            szemelyi: req.body.szemelyi,
             adoSzam:req.body.adoSzam,
             bankszámlaszám:req.body.bankszámlaszám,
             iskolaAzonosito:12345678911,
@@ -323,7 +334,7 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             jogviszony:req.body.jogviszony,
             szakok: req.body.szakok,
             jelszo: await hashData(req.body.jelszo),
-            admin:0
+            admin:1
             
             });
             console.log(tanar.toJSON());
