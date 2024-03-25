@@ -24,6 +24,7 @@ const FeketeListaModel = require("./dbModels/feketelista.model");
 //route-k
 const logRegRouter = require("./routes/loginRegisterRoute");
 const adatmodositasRouter = require("./routes/adaModositasRoute");
+const profilRouter = require("./routes/profilRouter");
 
 //////////////////////////////////////
 
@@ -76,9 +77,28 @@ sequelize.authenticate().then(() => {
 //////////////////////////////////////////////////////////////////////
 
 
+//blacklist ellenörzés
+
+
+        nodeCron.schedule('*/1 * * * *', () => {
+            FeketeListaModel.destroy({
+                where: {
+                    exp: {[Op.lt]:Date.now() /1000}
+                }
+            })
+
+        },{
+            scheduled:true,
+            timezone:"Europe/Budapest"
+        });
+
+//////////////////////////////////////////////////////////////////////
+
+
 
 app.use("/", logRegRouter);
 app.use("/", adatmodositasRouter);
+app.use("/", profilRouter);
 
 
 
