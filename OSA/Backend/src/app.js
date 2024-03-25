@@ -23,9 +23,9 @@ const FeketeListaModel = require("./dbModels/feketelista.model");
 
 //route-k
 const logRegRouter = require("./routes/loginRegisterRoute");
-const adatmodositasRouter = require("./routes/adaModositasRoute");
-const profilRouter = require("./routes/profilRouter");
-
+const adminRouter = require("./routes/adminRoute");
+const diakRouter = require("./routes/diakRoute");
+const tanarRouter = require("./routes/tanarRoute");
 //////////////////////////////////////
 
 
@@ -97,8 +97,9 @@ sequelize.authenticate().then(() => {
 
 
 app.use("/", logRegRouter);
-app.use("/", adatmodositasRouter);
-app.use("/", profilRouter);
+app.use("/", adminRouter);
+app.use("/",diakRouter);
+app.use("/", tanarRouter);
 
 
 

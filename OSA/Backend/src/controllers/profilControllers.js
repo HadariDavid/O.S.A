@@ -23,7 +23,9 @@ DiakadatlapModel.findOne({where:{ id : req.id}}).then((diak)=> {
             error:false,
             message:"sikeres adatlekérés",
             data:{
-                nev: diak.csaladNev + " " + diak.keresztNev
+                nev: diak.csaladNev + " " + diak.keresztNev,
+                osztaly: diak.osztalyId,
+                
             }
         })
     }
