@@ -1,21 +1,20 @@
 //könyvtárak
 const sequelize = require("../db");
 const bcrypt = require("bcrypt");
-const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+const { where } = require("sequelize");
 
 ///////////////////////////////////////////////////
 
 //modellek
 const TanaradatlapModel = require("../dbModels/tanaradatlap.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
-const BlacklistModel = require("../dbModels/blacklist.model");
+const FeketeListaModel = require("../dbModels/feketelista.model");
 
 ///////////////////////////////////////////////////
 
-const { where } = require("sequelize");
-
-///////////////////////////////////////////
+const tokenHeaderKey = "FejedIsMilyenTeGyász";
+const jwtSecretKey = "ARááákEgyeKiALeskelődőSzemed";
 
 
 //adat lekódolás
@@ -24,20 +23,6 @@ async function hashData(data){
     return await bcrypt.hash(data, 13);
 }
 
-
-//adatlekérdezés (megmarad? nem tudom)
-async function adatLekérdez(model, adat, keres){
-
-    const whereParameterek = {};
-    whereParameterek[adat] = keres;
-
-    const modelData = model.findAll({
-         where: whereParameterek
-     });
- 
-     return await modelData;
-    
-}
 
 
 ///////////////////////////////////////bejelentkezés////////////////////////////////////////////////////////
@@ -72,15 +57,25 @@ async function adatLekérdez(model, adat, keres){
         //ha a felhasználóhoz elküldött jelszó is egyezik generálja le a tokent
         if (await bcrypt.compare(jelszo, existingUser.jelszo) === true) {
             //generate JWToken 
-            let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-            let jwtSecretKey = process.env.JWT_SECRET_KEY;
+        let payload;
             try{
-                let payload = {
-                    nev : existingUser.keresztNev,
-                    userID: existingUser.id
+                //ellenőrizzük hogy a felhasználónak van-e admin joga és azalapján állítjuk a token tartalmát
+                if(existingUser.admin === undefined){   
+                    payload = {
+                        nev : existingUser.vezeteknev +" "+existingUser.keresztNev,
+                        userID: existingUser.id,
+                        admin:0
+                    }
+                }else{
+                     payload = {
+                        nev : existingUser.keresztNev,
+                        userID: existingUser.id,
+                        admin: existingUser.admin
+                    }
                 }
+            
             //token egy óráig tart 
-            var token = jwt.sign(payload, jwtSecretKey, {expiresIn:"3m"});
+            var token = jwt.sign(payload, jwtSecretKey, {expiresIn:"50m"});
             }catch(error){
                 console.log(error);
                 return res.status(520).json({
@@ -109,22 +104,29 @@ async function adatLekérdez(model, adat, keres){
 
 ////////////////////////////////////////////kijelentkezés/////////////////////////////////////////////////////
 
-
+ let zsidé = 0;
 function logout(req,res){
 
-    if(req.body.token === undefined){
+   
+    if(zsidé === 999999999){
+        zsidé = 1;
+    }
+
+    const token = req.headers.authorization.split(' ')[1];
+    const {exp} = jwt.decode(token);
+
+    if(token === undefined){
         return res.status(400).json({
             status:"error",
             message:"nincs bejelentkezve felhasználó"
         })
     }
 
-    
 
-
-const blacktoken = BlacklistModel.build({token : req.body.token});
+const blacktoken =FeketeListaModel.build({id:zsidé, token: token, exp: exp});
+zsidé = zsidé+1;
 blacktoken.save().then(()=>{
-    return res.status(200).json({
+         res.status(200).json({
         status:"succes",
         message:"sikeres kijelentkezés"
     });
@@ -144,19 +146,26 @@ async function registStudent(req, res){
     "osztalyId",
     "csaladNev",
     "keresztNev",
-    //"neme",
+    "neme",
     "szuletesiHely",
     "szuletesiDatum",
     "szuletesiOrszag",
     "allampolgarsag",
     "anyanyelv",
-   "anyjaleanyneve",
-    "gondviseloNeve",
+    "AnyjaLeanyVezetekneve",
+    "AnyjaLeanyKeresztneve",
+    "GondviseloVezetekneve",
+    "GondviseloKeresztneve",
     "gondviseloTelefon",
-    "lakcim",
-   // "személyi",
+    "Orszag",
+    "Iranyitoszam",
+    "Kozseg",
+    "Ut",
+    "Hazszam",
+    "szemelyi",
     "taj",
     "adoSzam",
+    "Kepzes",
     "jogviszony",
     "jogviszonyKezdete",
   ];
@@ -186,6 +195,7 @@ Object.values(tanulóKötAdatok).forEach((element)=>{
             osztalyId:req.body.osztalyId, //besoroló function helye,
             csaladNev:req.body.csaladNev,
             keresztNev: req.body.keresztNev,
+            neme:req.body.neme,
             szuletesiHely: req.body.szuletesiHely,
             szuletesiDatum:req.body.szuletesiDatum,
             szuletesiOrszag:req.body.szuletesiOrszag,
@@ -193,17 +203,24 @@ Object.values(tanulóKötAdatok).forEach((element)=>{
             anyanyelv:req.body.anyanyelv,
             telefon:req.body.telefon,
             email:req.body.email,
-            anyjaleanyneve:req.body.anyjaleanyneve,
-            gondviseloNeve:req.body.gondviseloNeve,
+            AnyjaLeanyVezetekneve:req.body.AnyjaLeanyVezetekneve,
+            AnyjaLeanyKeresztneve:req.body.AnyjaLeanyKeresztneve,
+            GondviseloVezetekneve:req.body.GondviseloVezetekneve,
+            GondviseloKeresztneve:req.body.GondviseloKeresztneve,
+            Orszag:req.body.Orszag,
+            Iranyitoszam:req.body.Iranyitoszam,
+            Kozseg:req.body.Kozseg,
+            Ut:req.body.Ut,
+            Hazszam:req.body.Hazszam,
             gondviseloTelefon:req.body.gondviseloTelefon,
             gondviseloEmail:req.body.gondviseloEmail,
-            lakcim:req.body.lakcim,
             taj:req.body.taj,
+            szemelyi: req.body.szemelyi,
             adoSzam:req.body.adoSzam,
             bankszámlaszám:req.body.bankszámlaszám,
             iskolaAzonosito:12345678911,
             oraId:123456789,
-            szerep:req.body.szerep,
+            Kepzes:req.body.Kepzes,
             jogviszonyKezdete:req.body.jogviszonyKezdete,
             jogviszonyVartVege:req.body.jogviszonyVartVege,
             jogviszony:req.body.jogviszony,
@@ -235,6 +252,7 @@ async function registTeacher(req, res){
 var tanarKötAdatok = [
             "csaladNev",
             "keresztNev",
+            "neme",
             "szuletesiHely",
             "szuletesiDatum",
             "szuletesiOrszag",
@@ -242,8 +260,13 @@ var tanarKötAdatok = [
             "anyanyelv",
             "telefon",
             "email",
-            "anyjaleanyneve",
-            "lakcim",
+            "AnyjaLeanyVezetekneve",
+            "AnyjaLeanyKeresztneve",
+            "Orszag",
+            "Iranyitoszam",
+            "Kozseg",
+            "Ut",
+            "Hazszam",
             "taj",
             "adoSzam",
             "bankszámlaszám",
@@ -284,6 +307,7 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             osztalyId:"2/14c",
             csaladNev:req.body.csaladNev,
             keresztNev: req.body.keresztNev,
+            neme:req.body.neme,
             szuletesiHely: req.body.szuletesiHely,
             szuletesiDatum:req.body.szuletesiDatum,
             szuletesiOrszag:req.body.szuletesiOrszag,
@@ -291,8 +315,13 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             anyanyelv:req.body.anyanyelv,
             telefon:req.body.telefon,
             email:req.body.email,
-            anyjaleanyneve:req.body.anyjaleanyneve,
-            lakcim:req.body.lakcim,
+            AnyjaLeanyVezetekneve:req.body.AnyjaLeanyVezetekneve,
+            AnyjaLeanyKeresztneve:req.body.AnyjaLeanyKeresztneve,
+            Orszag:req.body.Orszag,
+            Iranyitoszam:req.body.Iranyitoszam,
+            Kozseg:req.body.Kozseg,
+            Ut:req.body.Ut,
+            Hazszam:req.body.Hazszam,
             taj:req.body.taj,
             adoSzam:req.body.adoSzam,
             bankszámlaszám:req.body.bankszámlaszám,
@@ -304,7 +333,8 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             jogviszonyVartVege:req.body.jogviszonyVartVege,
             jogviszony:req.body.jogviszony,
             szakok: req.body.szakok,
-            jelszo: await hashData(req.body.jelszo)
+            jelszo: await hashData(req.body.jelszo),
+            admin:1
             
             });
             console.log(tanar.toJSON());

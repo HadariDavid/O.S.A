@@ -175,6 +175,7 @@ function deleteUser(req,res){
                         res.status(200).json({
                             status:"succes",
                             message:"sikeres törlés"
+                          
                         })
                 });
             }else{
