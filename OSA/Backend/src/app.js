@@ -24,6 +24,7 @@ const FeketeListaModel = require("./dbModels/feketelista.model");
 //route-k
 const logRegRouter = require("./routes/loginRegisterRoute");
 const adatmodositasRouter = require("./routes/adaModositasRoute");
+const profilRouter = require("./routes/profilRouter");
 
 //////////////////////////////////////
 
@@ -93,6 +94,7 @@ nodeCron.schedule('*/1 * * * *', () => {
 
 app.use("/", logRegRouter);
 app.use("/", adatmodositasRouter);
+app.use("/", profilRouter);
 
 
 
