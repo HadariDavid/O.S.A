@@ -334,7 +334,7 @@ Object.values(tanarKötAdatok).forEach((element)=>{
             jogviszony:req.body.jogviszony,
             szakok: req.body.szakok,
             jelszo: await hashData(req.body.jelszo),
-            admin:1
+            admin: req.body.admin
             
             });
             console.log(tanar.toJSON());
