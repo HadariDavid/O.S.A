@@ -18,6 +18,7 @@ const TantargyModel = require("./dbModels/tantargyak.model")
 const OsztalyzatModel = require("./dbModels/osztalyzat.model");
 const DiakadatlapModel = require("./dbModels/diakadatlap.model");
 const FeketeListaModel = require("./dbModels/feketelista.model");
+const OraModel = require("./dbModels/ora.model");
 
 //////////////////////////////////////
 
