@@ -18,13 +18,15 @@ const TantargyModel = require("./dbModels/tantargyak.model")
 const OsztalyzatModel = require("./dbModels/osztalyzat.model");
 const DiakadatlapModel = require("./dbModels/diakadatlap.model");
 const FeketeListaModel = require("./dbModels/feketelista.model");
+const OraModel = require("./dbModels/ora.model");
 
 //////////////////////////////////////
 
 //route-k
 const logRegRouter = require("./routes/loginRegisterRoute");
-const adatmodositasRouter = require("./routes/adaModositasRoute");
-
+const adminRouter = require("./routes/adminRoute");
+const diakRouter = require("./routes/diakRoute");
+const tanarRouter = require("./routes/tanarRoute");
 //////////////////////////////////////
 
 
@@ -76,9 +78,29 @@ sequelize.authenticate().then(() => {
 //////////////////////////////////////////////////////////////////////
 
 
+//blacklist ellenörzés
+
+
+        nodeCron.schedule('*/1 * * * *', () => {
+            FeketeListaModel.destroy({
+                where: {
+                    exp: {[Op.lt]:Date.now() /1000}
+                }
+            })
+
+        },{
+            scheduled:true,
+            timezone:"Europe/Budapest"
+        });
+
+//////////////////////////////////////////////////////////////////////
+
+
 
 app.use("/", logRegRouter);
-app.use("/", adatmodositasRouter);
+app.use("/", adminRouter);
+app.use("/",diakRouter);
+app.use("/", tanarRouter);
 
 
 

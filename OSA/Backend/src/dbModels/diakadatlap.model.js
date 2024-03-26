@@ -1,4 +1,4 @@
-const {DataTypes} = require("sequelize");
+const {DataTypes, Association} = require("sequelize");
 
 const sequelize = require("../db");
 
@@ -191,6 +191,7 @@ const Diakadatlap = sequelize.define("Diakadatlap", {
 },{
     tableName: "diakadatlap",
     timestamps:false
-});
+}
+);
 
 module.exports = Diakadatlap;
