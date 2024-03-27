@@ -25,28 +25,23 @@ async function getUser(req, res){
             }).then((diak) => { 
                     if(diak === null){
                         return res.status(404).json({
-                            status: "error",
+                            error: true,
                             message:"nem találtunk ilyen felhasználót"
                         }); 
                     }else{
-                        
-                        szerkFelhasznalo = diak;
-                        setModel = "diakadatlap";
                         res.status(200).json({
-                        status:"succes",
+                        error:false,
                         message:"lekérés sikeres",
-                        felhasznalo: diak
+                        data: diak
                         });
                     }
                 })
         }else{
 
-            szerkFelhasznalo = tanar;
-            setModel = "tanaradatlap";
             res.status(200).json({
-            status:"succes",
+            error:true,
             message:"lekérés sikeres",
-            felhasznalo: tanar
+            data: tanar
             });
         }
     });
@@ -60,41 +55,13 @@ async function patchUser(req,res){
                 id: req.body.id
             }
         }).then(async (tanar) => {
-                tanar.set({
-                    id:(req.body.csaladNev.substring(0,2) + req.body.keresztNev[0]),
-                    osztalyId:req.body.osztalyId,
-                    csaladNev:req.body.csaladNev,
-                    keresztNev: req.body.keresztNev,
-                    szuletesiHely: req.body.szuletesiHely,
-                    szuletesiDatum:req.body.szuletesiDatum,
-                    szuletesiOrszag:req.body.szuletesiOrszag,
-                    allampolgarsag:req.body.allampolgarsag,
-                    AnyjaLeanyVezetekneve:req.body.AnyjaLeanyVezetekneve,
-                    AnyjaLeanyKeresztneve:req.body.AnyjaLeanyKeresztneve,
-                    telefon:req.body.telefon,
-                    email:req.body.email,
-                    Orszag:req.body.Orszag,
-                    Iranyitoszam:req.body.Iranyitoszam,
-                    Kozseg:req.body.Kozseg,
-                    Ut:req.body.Ut,
-                    Hazszam:req.body.Hazszam,
-                    taj:req.body.taj,
-                    adoSzam:req.body.adoSzam,
-                    bankszámlaszám:req.body.bankszámlaszám,
-                    oktatasiAzonosito:req.body.oktatasiAzonosito,
-                    iskolaAzonosito:req.body.iskolaAzonosito,
-                    oraId:req.body.oraId,
-                    szerep:req.body.szerep,
-                    jogviszonyKezdete:req.body.jogviszonyKezdete,
-                    jogviszonyVartVege:req.body.jogviszonyVartVege,
-                    jogviszony:req.body.jogviszony,
-                    szakok: req.body.szakok,
-                    admin: req.body.admin
-                })
 
+            for(const elem of Object.keys(req.body)){
+                tanar[elem] = req.body[elem];
+            }
                     tanar.save().then(()=>{
                             return res.status(200).json({
-                                status:"succes", 
+                                error:false, 
                                 message: "sikeres frissités"
                             });
                         })
@@ -106,66 +73,32 @@ async function patchUser(req,res){
                             id: req.body.id
                         }
                     }).then((diak) => {
-                        diak.set({
-                            id:req.body.id, //OM azonosító
-                            osztalyId:req.body.osztalyId, //besoroló function helye,
-                            csaladNev:req.body.csaladNev,
-                            keresztNev: req.body.keresztNev,
-                            szuletesiHely: req.body.szuletesiHely,
-                            szuletesiDatum:req.body.szuletesiDatum,
-                            szuletesiOrszag:req.body.szuletesiOrszag,
-                            allampolgarsag:req.body.allampolgarsag,
-                            anyanyelv:req.body.anyanyelv,
-                            telefon:req.body.telefon,
-                            email:req.body.email,
-                            AnyjaLeanyVezetekneve:req.body.AnyjaLeanyVezetekneve,
-                            AnyjaLeanyKeresztneve:req.body.AnyjaLeanyKeresztneve,
-                            GondviseloVezetekneve:req.body.GondviseloVezetekneve,
-                            GondviseloKeresztneve:req.body.GondviseloKeresztneve,
-                            gondviseloTelefon:req.body.gondviseloTelefon,
-                            gondviseloEmail:req.body.gondviseloEmail,
-                            Orszag:req.body.Orszag,
-                            Iranyitoszam:req.body.Iranyitoszam,
-                            Kozseg:req.body.Kozseg,
-                            Ut:req.body.Ut,
-                            Hazszam:req.body.Hazszam,
-                            taj:req.body.taj,
-                            adoSzam:req.body.adoSzam,
-                            bankszámlaszám:req.body.bankszámlaszám,
-                            iskolaAzonosito:req.body.iskolaAzonosito,
-                            oraId:req.body.oraId,
-                            szerep:req.body.szerep,
-                            jogviszonyKezdete:req.body.jogviszonyKezdete,
-                            jogviszonyVartVege:req.body.jogviszonyVartVege,
-                            jogviszony:req.body.jogviszony,
-                            hatranyosHelyzet:req.body.hatranyosHelyzet,
-                            kepesitesek:req.body.kepesitesek,
-                            egyediMegjegyzes: req.body.egyediMegjegyzes,
-                            
-                        })
+                       
+                        for(const elem of Object.keys(req.body)){
+                            diak[elem] = req.body[elem];
+                        }
+
                             diak.save().then(()=>{
                                 return res.status(200).json({
-                                    status:"succes", 
+                                    error:false, 
                                     message: "sikeres frissités"
                                 });
                             })
                     });
                     
             } else{
-                res.status(404).json({
-                    status:"succes",
+                return res.status(404).json({
+                    error:true,
                     message:"Nincs ilyen felhasználó"
                 })
             }
-        }catch(error){
-            console.log(error);
-            return res.status(520).json({
-                status:"error",
-                message:"váratlan hiba",
-                cause:error
-            })
-
-        
+    }catch(error){
+        console.log(error);
+        return res.status(520).json({
+            error:true,
+            message:"váratlan hiba",
+            cause:error
+        })
     }
 }
 
@@ -183,7 +116,7 @@ function deleteUser(req,res){
                         }
                     }).then((tanar) => {
                         tanar.destroy();
-                        res.status(200).json({
+                        return res.status(200).json({
                             status:"succes",
                             message:"sikeres törlés"
                           
@@ -191,7 +124,7 @@ function deleteUser(req,res){
                 });
             }else{
                  diak.destroy();
-                 res.status(200).json({
+                 return res.status(200).json({
                     status:"succes",
                     message:"sikeres törlés"
                 })
@@ -199,6 +132,10 @@ function deleteUser(req,res){
         })
     }catch(error){
         console.log(error);
+        return res.status(500).json({
+            error:true,
+            message:"adatbázis hiba"
+        })
     }   
 }
 
