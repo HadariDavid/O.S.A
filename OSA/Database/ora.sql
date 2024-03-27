@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Már 22. 10:44
+-- Létrehozás ideje: 2024. Már 27. 09:28
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `osaadatbazis`
+-- Adatbázis: `osaadatbazis2.0`
 --
 
 -- --------------------------------------------------------
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ora` (
-  `osztaly` int(11) NOT NULL,
-  `nap` int(11) NOT NULL,
+  `osztaly` varchar(11) NOT NULL,
+  `nap` text NOT NULL,
   `1ora` varchar(50) NOT NULL,
   `2ora` varchar(50) NOT NULL,
   `3ora` varchar(50) NOT NULL,
@@ -40,6 +40,17 @@ CREATE TABLE `ora` (
   `8ora` varchar(50) NOT NULL,
   `9ora` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `ora`
+--
+
+INSERT INTO `ora` (`osztaly`, `nap`, `1ora`, `2ora`, `3ora`, `4ora`, `5ora`, `6ora`, `7ora`, `8ora`, `9ora`) VALUES
+('2/14c', 'Hétfő', 'Asztmobigyak', 'Asztmobigyak', 'Asztmobigyak', 'Szaang', 'Szofegy', 'Frontgy', 'Frontgy', '', ''),
+('2/14c', 'Kedd', 'IKTproj2gy', 'IKTproj2gy', 'Asztmobilalk', 'Adbk2gy', 'Backend', 'Frontend', 'Backendgy', '', ''),
+('2/14c', 'Szerda', 'Backendgy', 'Backendgy', 'Frontgy', 'Frontgy', 'Hittan', 'Backend', 'Asztmobilalk', '', ''),
+('2/14c', 'Csütörtök', 'IKTproj2gy', 'Ofői', 'Asztmobigyak', 'Asztmobigyak', 'Frontend', 'Szaang', 'Muidny', '', ''),
+('2/14c', 'Péntek', 'IKTproj2gy', 'IKTproj2gy', 'Muidny', 'IKTp2', 'IKTp2', 'Backendgy', 'Adbk2gy', '-', '-');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
