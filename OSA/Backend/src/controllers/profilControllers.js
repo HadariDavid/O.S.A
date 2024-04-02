@@ -1,6 +1,9 @@
 //könyvtárak
 const sequelize = require("../db");
 const { QueryTypes } = require("sequelize");
+const jwt = require('jsonwebtoken');
+const fs = require("node:fs/promises");
+
 
 ////////////////////////////////////////
 
@@ -8,11 +11,14 @@ const { QueryTypes } = require("sequelize");
 const TanaradatlapModel = require("../dbModels/tanaradatlap.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
 const OsztalyzatModel = require("../dbModels/osztalyzat.model");
+const oraModel = require ("../dbModels/ora.model");
 
 ///////////////////////////////////////////////////
 
 async function getDiak(req, res){
-const {id} = jwt.decode(token);
+
+var maiOrarend;
+const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
 
 
     DiakadatlapModel.findOne({where:{ id: id}}).then(async (diak)=> {
@@ -24,14 +30,49 @@ const {id} = jwt.decode(token);
         }else{
 
             const tanar = await TanaradatlapModel.findOne({where:{osztalyId: diak.osztalyId}});
-            const jegyek = await OsztalyzatModel.findAll({where:{tanuloID: id}});
+            const jegyek = await OsztalyzatModel.findAll({where:{tanuloId: id}});
+            
+            
+///////////////////////////felhasználó órarendjének lekérése
+            oraModel.findAll({
+                where:{
+                    azonosito:"2/14c"
+                }
+            }).then((orarend)=>{
 
+        /////////////////////////////"mai" órarend            
+                    const date = new Date(Date.now());
+                    
+                    maiOrarend = orarend[(date.getDay()-1)];
+            //s     console.log(maiOrarend);
+
+                    if(date.getDay() == 0 && date.getDay() == 6){
+                    maiOrarend = "mai nap nincs tanítási óra";
+                    }
+
+        //////////////////////////////////////////////            
+            }).catch((err)=>{
+                console.log(err);
+                return res.status(502).json({
+                    error:true,
+                    message:"adatbázis hiba"
+                });
+            });
+            
+            
+///////////////////////////////////////////////////////////////////////
+
+////////////////////átlag kiszámítása
             let atlag = 0;
             jegyek.forEach(jegy => {
                 atlag += jegy.osztalyzat;
             });
             atlag = atlag/jegyek.length;
             
+////////////////////////////////////////////////
+
+console.log(maiOrarend);//probléma undefined-nak érzékeli de ha feljebb használnám (47. sor) ott érzékelné
+
                 return res.status(200).json({
                 error:false,
                 message:"sikeres adatlekérés",
@@ -42,13 +83,11 @@ const {id} = jwt.decode(token);
                     osztalyFo: tanar.csaladNev + " " + tanar.keresztNev,
                     osztalyFoTel: tanar.telefon,
                     jegyek:[jegyek],
-                    atlag: atlag
-
+                    atlag: atlag,
+                    napiOrarend: maiOrarend
                 }
             })
-            
-
-            
+              
         }
     }).catch((err) =>{
         console.log(err);
@@ -61,8 +100,16 @@ const {id} = jwt.decode(token);
 }
 
 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
 function getTanar(req, res){
-    TanaradatlapModel.findOne({where:{ id : req.id}}).then((tanar)=> {
+
+    const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
+
+
+    TanaradatlapModel.findOne({where:{ id : id}}).then((tanar)=> {
         if(tanar == null){
             return res.status(404).json({
                 error:true,
@@ -77,7 +124,13 @@ function getTanar(req, res){
                 }
             })
         }
-    })
+    }).catch((err) =>{
+        console.log(err);
+        return res.status(502).json({
+            error:true,
+            message:"adatbázis hiba"
+        })
+    });
     
 }
 

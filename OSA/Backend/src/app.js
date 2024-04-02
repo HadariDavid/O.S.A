@@ -38,6 +38,11 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
 /////////////////////////////////////////////adatbázis csatlakozás////////////////////////
 
 sequelize.authenticate().then(() => {
@@ -81,25 +86,6 @@ sequelize.authenticate().then(() => {
         });
 
 //////////////////////////////////////////////////////////////////////
-
-
-//blacklist ellenörzés
-
-
-        nodeCron.schedule('*/1 * * * *', () => {
-            FeketeListaModel.destroy({
-                where: {
-                    exp: {[Op.lt]:Date.now() /1000}
-                }
-            })
-
-        },{
-            scheduled:true,
-            timezone:"Europe/Budapest"
-        });
-
-//////////////////////////////////////////////////////////////////////
-
 
 
 app.use("/", logRegRouter);

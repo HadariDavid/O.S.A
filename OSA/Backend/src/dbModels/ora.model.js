@@ -3,8 +3,14 @@ const {DataTypes} = require("sequelize");
 const sequelize = require("../db");
 
 const Ora = sequelize.define("Ora", {
-    osztaly:{
-        type: DataTypes.STRING,
+    id:{
+        type: DataTypes.INTEGER,
+        allowNull:true,
+        primaryKey:true,
+        autoIncrement:true,
+    },
+    azonosito:{
+        type:DataTypes.STRING,
         allowNull:true
     },
     nap:{

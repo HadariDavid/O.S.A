@@ -63,13 +63,13 @@ async function hashData(data){
                 if(existingUser.admin === undefined){   
                     payload = {
                         nev : existingUser.vezeteknev +" "+existingUser.keresztNev,
-                        userID: existingUser.id,
+                        id: existingUser.id,
                         admin:0
                     }
                 }else{
                      payload = {
                         nev : existingUser.vezeteknev +" "+existingUser.keresztNev,
-                        userID: existingUser.id,
+                        id: existingUser.id,
                         admin: existingUser.admin
                     }
                 }
