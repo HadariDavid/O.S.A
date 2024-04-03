@@ -12,11 +12,14 @@ const TanaradatlapModel = require("../dbModels/tanaradatlap.model");
 const DiakadatlapModel = require("../dbModels/diakadatlap.model");
 const OsztalyzatModel = require("../dbModels/osztalyzat.model");
 const oraModel = require ("../dbModels/ora.model");
+const CsengetesiRendModel = require("../dbModels/csengetesiRend.model");
 
 ///////////////////////////////////////////////////
 
+
 async function getDiak(req, res){
 
+ const date = new Date(Date.now());
 var maiOrarend;
 const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
 
@@ -41,7 +44,7 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
             }).then((orarend)=>{
 
         /////////////////////////////"mai" órarend            
-                    const date = new Date(Date.now());
+                   
                     
                     maiOrarend = orarend[(date.getDay()-1)];
             //s     console.log(maiOrarend);
@@ -72,6 +75,33 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
 ////////////////////////////////////////////////
 
 console.log(maiOrarend);//probléma undefined-nak érzékeli de ha feljebb használnám (47. sor) ott érzékelné
+
+            console.log(date.getHours() + " : " + date.getMinutes());
+
+            CsengetesiRendModel.findAll().then((orak)=> {
+
+                orak.forEach((element) => {
+                    let beÓ = element.becsengo.split(":")[0];
+                    let beP = element.becsengo.split(":")[1];
+                    let kiÓ = element.kicsengo.split(":")[0];
+                    let kiP = element.kicsengo.split(":")[1];
+                
+                    if( beÓ <= date.getHours() < kiÓ){
+                       if(beP <= date.getMinutes() < kiP){
+
+                       }
+                    }else{
+                        console.log(beÓ);
+                    }
+                    })
+                }).catch((err) => {
+                    console.log(err);
+                    return res.status(502).json({
+                        error:true,
+                        message:"adatbázis hiba"
+                    })
+                }) 
+
 
                 return res.status(200).json({
                 error:false,
