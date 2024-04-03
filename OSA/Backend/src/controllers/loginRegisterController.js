@@ -63,13 +63,13 @@ async function hashData(data){
                 if(existingUser.admin === undefined){   
                     payload = {
                         nev : existingUser.vezeteknev +" "+existingUser.keresztNev,
-                        userID: existingUser.id,
+                        id: existingUser.id,
                         admin:0
                     }
                 }else{
                      payload = {
-                        nev : existingUser.keresztNev,
-                        userID: existingUser.id,
+                        nev : existingUser.vezeteknev +" "+existingUser.keresztNev,
+                        id: existingUser.id,
                         admin: existingUser.admin
                     }
                 }
@@ -79,12 +79,12 @@ async function hashData(data){
             }catch(error){
                 console.log(error);
                 return res.status(520).json({
-                    "response":"váratlan hiba történt"
+                    response:"váratlan hiba történt"
                 });
             }
         }else{
             return res.status(400).json({
-                "response":"nincs ilyen felhasználó"
+                response:"nincs ilyen felhasználó"
             });
         }
 

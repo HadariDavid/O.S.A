@@ -38,10 +38,15 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
 /////////////////////////////////////////////adatbázis csatlakozás////////////////////////
 
 sequelize.authenticate().then(() => {
-    console.log("kapcsolat sikeresen létesült");
+    
 
     sequelize.modelManager.addModel(TeremModel);
     sequelize.modelManager.addModel(TanaradatlapModel);
@@ -49,8 +54,13 @@ sequelize.authenticate().then(() => {
     sequelize.modelManager.addModel(OsztalyzatModel);
     sequelize.modelManager.addModel(DiakadatlapModel);
     sequelize.modelManager.addModel(FeketeListaModel);
+    
+    try{
     sequelize.sync();
-
+    console.log("kapcsolat sikeresen létesült");
+    }catch(err){
+        return console.log(err);
+    }
 }).catch((error) => {
     console.log("Az adatbázissal nem sikerült a kapcsolat");
     console.log(error);
@@ -63,7 +73,7 @@ sequelize.authenticate().then(() => {
 //blacklist ellenörzés
 
 
-        nodeCron.schedule('*/1 * * * *', () => {
+        nodeCron.schedule('* */55 * * *', () => {
             FeketeListaModel.destroy({
                 where: {
                     exp: {[Op.lt]:Date.now() /1000}
@@ -76,25 +86,6 @@ sequelize.authenticate().then(() => {
         });
 
 //////////////////////////////////////////////////////////////////////
-
-
-//blacklist ellenörzés
-
-
-        nodeCron.schedule('*/1 * * * *', () => {
-            FeketeListaModel.destroy({
-                where: {
-                    exp: {[Op.lt]:Date.now() /1000}
-                }
-            })
-
-        },{
-            scheduled:true,
-            timezone:"Europe/Budapest"
-        });
-
-//////////////////////////////////////////////////////////////////////
-
 
 
 app.use("/", logRegRouter);
