@@ -32,7 +32,6 @@ export class AuthService {
 
         if(valasz.success){
           localStorage.setItem('token',valasz.data.token)
-
           this.router.navigate(['/tanar']);
         }
 

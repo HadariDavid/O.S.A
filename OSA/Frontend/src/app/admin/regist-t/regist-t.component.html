@@ -1,0 +1,138 @@
+<app-header-a></app-header-a>
+<div class="container">
+    <div class="login-form">
+        <h1>Tanár Regisztráció</h1>
+        <hr>
+        <br>
+        <div>
+                <div class="container">
+                    <p>Több név esetén a középső neveket a Keresztnév mezőbe adja meg.</p>
+                    <label>Tanár Neve:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" [(ngModel)]="ujtanar.csaladNev" required >
+                        <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" [(ngModel)]="ujtanar.keresztNev" required>
+                    </div>
+                    <div class="text-container">
+                        <label>Tel.:</label>
+                        <input type="text" class="form-control mid" placeholder="Telefonszám" title="Telefonszám" maxlength="15" [(ngModel)]="ujtanar.telefon" required>
+                        <label>E-Mail:</label>
+                        <input type="text" class="form-control mid" placeholder="E-Mail" title="Telefonszám" [(ngModel)]="ujtanar.email" required>
+                    </div>
+                    <label>Anyja Neve:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control" placeholder="Vezetéknév" title="Vezetéknév" [(ngModel)]="ujtanar.anyaLeanyVezetekneve" required>
+                        <input type="text" class="form-control" placeholder="Keresztnév" title="Keresztnév" [(ngModel)]="ujtanar.anyaLeanyKeresztneve" required>
+                    </div>
+                    <hr>
+                    <label>Tanár Neme:</label>
+                    <div class="form-check">
+                        <input class="gender-input" type="radio" name="GenderRadio" id="GenderRadio1" title="Férfi" value="férfi" [(ngModel)]="ujtanar.neme">
+                        Férfi
+                      </div>
+                    <div class="form-check">
+                        <input class="gender-input" type="radio" name="GenderRadio" id="GenderRadio2" title="Nő" value="nő" [(ngModel)]="ujtanar.neme">
+                        Nő
+                    </div><br>
+                    <label>Születési Idő:</label>
+                    <div>
+                        <input class="date-short" type="date" placeholder="Születesi Idő" title="Születesi Idő" [(ngModel)]="ujtanar.szuletesiDatum" required>
+                    </div>
+                    <br>
+                    <label>Születési Ország:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control" placeholder="Szuletesi Ország" title="Születési Orzág" [(ngModel)]="ujtanar.szuletesiOrszag" required>
+                    </div>
+                    <label>Születési Hely:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control" placeholder="Szuletesi Hely" title="Születési Hely" [(ngModel)]="ujtanar.szuletesiHely" required>
+                    </div>
+                    <label>Lakcím:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control mid" placeholder="Ország" title="Ország" [(ngModel)]="ujtanar.orszag" required>
+                        <input type="text" class="form-control short" placeholder="Irányítószám" title="Irányítószám" maxlength="4" [(ngModel)]="ujtanar.iranyitoSzam" required>
+                        <input type="text" class="form-control long" placeholder="Város / Falu" title="Város / Falu" [(ngModel)]="ujtanar.kozseg" required>
+                        <input type="text" class="form-control mid" placeholder="Út / Utca" title="Út / Utca" [(ngModel)]="ujtanar.ut" required>
+                        <input type="text" class="form-control short" placeholder="Házszám" title="Házszám" [(ngModel)]="ujtanar.hazSzam" required>
+                    </div>
+                    <hr>
+                    <label>Állampolgársága:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control" placeholder="Állampolgársága" title="Állampolgársága" [(ngModel)]="ujtanar.allampolgarsag" required>
+                    </div>
+                    <label>Anyanyelve:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control" placeholder="Anyanyelve" title="Anyanyelve" [(ngModel)]="ujtanar.anyanyelv" required>
+                    </div>
+                    <hr>
+                    <label>Személyi Igazolvány Szám:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control long" placeholder="Személyi Igazolvány Szám" title="Személyi Igazolvány Szám" maxlength="8" [(ngModel)]="ujtanar.szemelyi" required>
+                    </div>
+                    <label>OM Azonosító:</label>
+                    <br>
+                    Már rendelkezik OM azonosítóval? [ Nem / Igen ]
+                    <label class="switch">
+                        <input type="checkbox" id="OM-Switch" (change)="isChecked($event)">
+                        <span class="slider"></span>
+                    </label>
+                    <br>
+                    OM Azonosító:
+                    <div class="text-container">
+                        <input type="text" class="form-control mid" [placeholder]="Placeholder" title="OM Azonosító" id="OM-Number" [disabled]="isDisabled" [value]="Value" maxlength="11" [(ngModel)]="ujtanar.oktatasiAzonosito">
+                    </div>
+                    <label>Társadalombiztosítási Azonosító Jel (TAJ Szám):</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control mid" placeholder="TAJ Szám" title="Társadalombiztosítási Azonosító Jel (TAJ Szám)" maxlength="9" [(ngModel)]="ujtanar.taj" required>
+                    </div>
+                    <label>Adóazonosító Jel:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control mid" placeholder="Adóazonosító Jel" title="Adóazonosító Jel" maxlength="10" [(ngModel)]="ujtanar.adoszam" required>
+                    </div>
+                    <!-- -->
+                    <label>Bankszámla Szám:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control long" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX" title="Bankszámlaszám" maxlength="26" [(ngModel)]="ujtanar.bankszamlaSzam" required>
+                    </div>
+                    <hr>
+                    <label>Jogviszony:</label>
+                    <div class="text-container">
+                        <input type="text" class="form-control long" placeholder="Jogviszony" title="Jogviszony" [(ngModel)]="ujtanar.jogviszony" required>
+                    </div>
+                    <label>Jogviszony Kezdete:</label>
+                    <div>
+                        <input class="date-short" type="date" title="Jogviszony Kezdete" [(ngModel)]="ujtanar.jogviszonyKezdete" required>
+                    </div>
+                    <br>
+                    <label>Jogviszony Vége:</label>
+                    <div>
+                        <input class="date-short" type="date" title="Jogviszony Vége" [(ngModel)]="ujtanar.jogviszonyVartVege" required>
+                    </div>
+                    <hr>
+                    <label>Szak(ok):</label>
+                    <div>
+                        <div id="szak-container">
+                            <input type="text" class="form-control ex-long" placeholder="Új szak megadása" title="Új szak megadása" id="szak-text" maxlength="128" [(ngModel)]="ujtanar.szakok" required>
+                        </div>
+                        <br>
+                        <div>
+                            <button type="button" class="addBtn" id="plu" title="Új szak hozzáadása" onclick="plusButton()">+</button><button type="button" class="addBtn" id="min" title="Beviteli mező törlése" onclick="minusButton()">-</button>
+                        </div>
+                    </div>
+                    <br><br>
+                    <hr>
+                    <label>Egyéb információk:</label>
+                    <div class="text-container">
+                        <textarea class="form-control" placeholder="Egyéb információk" title="Egyéb információk" maxlength="255" [(ngModel)]="ujtanar.egyeb"></textarea>
+                    </div>
+                    <label>Admin? [ Nem / Igen ]</label><br>
+                    <label class="switch">
+                        <input type="checkbox" id="admin-Switch" [(ngModel)]="ujtanar.admin">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="regisztralasGomb()">Tanár Regisztrálása</button>
+        </div>
+    </div>
+    <br>
+</div>
+<script src="../../scripts.js"></script>

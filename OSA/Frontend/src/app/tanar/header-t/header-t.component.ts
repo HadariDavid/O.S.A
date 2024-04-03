@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-header-t',
@@ -9,5 +10,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header-t.component.css'
 })
 export class HeaderTComponent {
+  
+  constructor(protected authservice: AuthService) {}
+
+  kijelentkezes(){
+    console.log("sikeres kijelentkezés");
+  }
 
 }

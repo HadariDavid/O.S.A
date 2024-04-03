@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-header-d',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './header-d.component.css'
 })
 export class HeaderDComponent {
+
+  constructor(protected authservice: AuthService) {}
+
+  kijelentkezes(){
+    console.log("sikeres kijelentkezés");
+  }
 
 }
