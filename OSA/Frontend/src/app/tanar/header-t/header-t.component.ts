@@ -14,7 +14,9 @@ export class HeaderTComponent {
   constructor(protected authservice: AuthService) {}
 
   kijelentkezes(){
-    console.log("sikeres kijelentkezés");
+
+    
+
   }
 
 }
