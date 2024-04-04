@@ -32,91 +32,90 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
             });
         }else{
 
-            const tanar = await TanaradatlapModel.findOne({where:{osztalyId: diak.osztalyId}});
-            const jegyek = await OsztalyzatModel.findAll({where:{tanuloId: id}});
-            
-            
-///////////////////////////felhasználó órarendjének lekérése
-            oraModel.findAll({
-                where:{
-                    azonosito:"2/14c"
-                }
-            }).then((orarend)=>{
-
-        /////////////////////////////"mai" órarend            
-                   
-                    
+            //megvárjuk a szükséges adatok lekérdezését az adatbázisból
+            Promise.all([
+            tanar = await TanaradatlapModel.findOne({where:{osztalyId: diak.osztalyId}}),
+            jegyek = await OsztalyzatModel.findAll({where:{tanuloId: id}}),
+            orarend = await oraModel.findAll({where:{azonosito:/*diak.osztalyId*/"2/14c"}}),
+            orak = await CsengetesiRendModel.findAll(),
+            ]).then(() => {
+                    ///////////////////////////felhasználó órarendjének lekérése
+                        
                     maiOrarend = orarend[(date.getDay()-1)];
-            //s     console.log(maiOrarend);
 
                     if(date.getDay() == 0 && date.getDay() == 6){
                     maiOrarend = "mai nap nincs tanítási óra";
                     }
 
-        //////////////////////////////////////////////            
-            }).catch((err)=>{
+
+                    ///////////////jelenlegi és következő óra
+
+                    console.log(date.getHours() + " : " + date.getMinutes());
+
+                    var oraJ;
+                    var oraK;
+
+                    for(let element in orak){
+                    let beÓ = orak[element].becsengo.split(":")[0]; //becsengetés órája
+                    let beP = orak[element].becsengo.split(":")[1];   //becsengetés perce
+                    let kiÓ = orak[element].kicsengo.split(":")[0];   //kicsengetés órája
+
+                    if( beÓ <= date.getHours() && date.getHours() < kiÓ){
+                    if(beP <= date.getMinutes()){
+                            var oraX = `ora${orak[element].id}`;
+                            console.log(oraX);
+                            oraJ = orarend["ora1"];
+                            console.log(orarend.ora1);
+                            oraX = `ora${(orak[element].id + 1)}`;
+                            oraK = orarend[oraX];
+                            console.log(oraK);
+                            
+                    }else{
+                            console.log("szünet");
+                    }
+                    }
+                    }
+
+                    ///////////////////////////////////////////////////////////////////////
+
+                    ////////////////////átlag kiszámítása
+                        let atlag = 0;
+                        jegyek.forEach(jegy => {
+                            atlag += jegy.osztalyzat;
+                        });
+                        atlag = atlag/jegyek.length;
+                        
+                    ///////////////////////////////////////
+
+                    return res.status(200).json({
+                        error:false,
+                        message:"sikeres adatlekérés",
+                        data:{
+                            nev: diak.csaladNev + " " + diak.keresztNev,
+                            szak: diak.Kepzes,
+                            osztaly: diak.osztalyId,
+                            osztalyFo: tanar.csaladNev + " " + tanar.keresztNev,
+                            osztalyFoTel: tanar.telefon,
+                            osztalyFoEmail: tanar.email,
+                            jegyek:jegyek, //array
+                            atlag: atlag,
+                            napiOrarend: maiOrarend, //object
+                            aktualisOra:{
+                                jelenOra: oraJ,
+                                kovOra: oraK
+                            }
+                        }
+                    })
+
+
+            }).catch((err) => {
                 console.log(err);
                 return res.status(502).json({
                     error:true,
                     message:"adatbázis hiba"
-                });
-            });
-            
-            
-///////////////////////////////////////////////////////////////////////
-
-////////////////////átlag kiszámítása
-            let atlag = 0;
-            jegyek.forEach(jegy => {
-                atlag += jegy.osztalyzat;
-            });
-            atlag = atlag/jegyek.length;
-            
-////////////////////////////////////////////////
-
-console.log(maiOrarend);//probléma undefined-nak érzékeli de ha feljebb használnám (47. sor) ott érzékelné
-
-            console.log(date.getHours() + " : " + date.getMinutes());
-
-            CsengetesiRendModel.findAll().then((orak)=> {
-
-                orak.forEach((element) => {
-                    let beÓ = element.becsengo.split(":")[0];
-                    let beP = element.becsengo.split(":")[1];
-                    let kiÓ = element.kicsengo.split(":")[0];
-                    let kiP = element.kicsengo.split(":")[1];
-                
-                    if( beÓ <= date.getHours() < kiÓ){
-                       if(beP <= date.getMinutes() < kiP){
-
-                       }
-                    }else{
-                        console.log(beÓ);
-                    }
-                    })
-                }).catch((err) => {
-                    console.log(err);
-                    return res.status(502).json({
-                        error:true,
-                        message:"adatbázis hiba"
-                    })
-                }) 
-
-
-                return res.status(200).json({
-                error:false,
-                message:"sikeres adatlekérés",
-                data:{
-                    nev: diak.csaladNev + " " + diak.keresztNev,
-                    szak: diak.Kepzes,
-                    osztaly: diak.osztalyId,
-                    osztalyFo: tanar.csaladNev + " " + tanar.keresztNev,
-                    osztalyFoTel: tanar.telefon,
-                    jegyek:[jegyek],
-                    atlag: atlag,
-                    napiOrarend: maiOrarend
-                }
+                })
             })
+            
               
         }
     }).catch((err) =>{

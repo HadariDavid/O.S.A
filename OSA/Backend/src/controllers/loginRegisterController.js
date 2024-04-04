@@ -219,7 +219,7 @@ Object.values(tanulóKötAdatok).forEach((element)=>{
             adoSzam:req.body.adoSzam,
             bankszámlaszám:req.body.bankszámlaszám,
             iskolaAzonosito:12345678911,
-            oraId:123456789,
+            oraId:123,
             Kepzes:req.body.Kepzes,
             jogviszonyKezdete:req.body.jogviszonyKezdete,
             jogviszonyVartVege:req.body.jogviszonyVartVege,
@@ -303,7 +303,7 @@ Object.values(tanarKötAdatok).forEach((element)=>{
 
 // 13 salt egy fél mp kódolást igényel és lefordítást bejelentkezési idő kb 1 mp
         const tanar = TanaradatlapModel.build({
-            id:(req.body.csaladNev.substring(0,2) + req.body.keresztNev[0]),
+            id:oktatasiAzonosito,
             osztalyId:"2/14c",
             csaladNev:req.body.csaladNev,
             keresztNev: req.body.keresztNev,
