@@ -17,4 +17,10 @@ li{
 button{
     background-color: rgba(0,0,0,0%);
     border-color: rgba(0,0,0,0%);
+    transition: 0.5s;
+}
+
+li button:hover{
+    font-weight: bold;
+    transition: 0.5s;
 }

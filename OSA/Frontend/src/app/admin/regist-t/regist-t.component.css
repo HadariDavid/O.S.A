@@ -1,4 +1,4 @@
-.login-form {
+.regist-form {
     max-width: 1600px;
     margin: 100px auto;
     background-color: #ffffff;
@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 
-.login-form input[type="text"], .login-form input[type="password"], .login-form input[type="date"] {
+.regist-form input[type="text"], .regist-form input[type="date"] {
     width: 25%;
     padding: 10px;
     margin-bottom: 20px;
@@ -18,24 +18,24 @@
     border-radius: 5px;
 }
 
-/* TEXT INPUT SZÉLESSÉGEK */
-.login-form input[type="text"].short {
+/* TEXT/DATE INPUT SZÉLESSÉGEK */
+.regist-form input[type="text"].short {
     width: 10%;
 }
 
-.login-form input[type="date"].date-short{
+.regist-form input[type="date"].date-short{
     width: 12%;
 }
 
-.login-form input[type="text"].mid {
+.regist-form input[type="text"].mid {
     width: 20%;
 }
 
-.login-form input[type="text"].long {
+.regist-form input[type="text"].long {
     width: 30%;
 }
 
-.login-form input[type="text"].ex-long {
+.regist-form input[type="text"].ex-long {
     width: 55%;
 }
 
@@ -55,7 +55,7 @@ textarea{
 
 
 /* FORM GOMB BEÁLLÍTÁSOK */
-.login-form button {
+.regist-form button {
     width: 25%;
     padding: 10px;
     background-color: #ffa600;
@@ -68,7 +68,7 @@ textarea{
     overflow: hidden;
 }
 
-.login-form button:hover {
+.regist-form button:hover {
     background-color: #ffbb3b;
 }
 
@@ -148,7 +148,7 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-.login-form button.addBtn {
+.regist-form button.addBtn {
     width: 10%;
     padding: 5px;
     margin-left: 0.5%;
@@ -164,7 +164,7 @@ input:checked + .slider:before {
     overflow: hidden;
 }
 
-.login-form button.addBtn:hover {
+.regist-form button.addBtn:hover {
     background-color: #ffbb3b;
 }
 

@@ -14,13 +14,13 @@ export class BejelentkezesComponent {
 
   constructor(protected authservice: AuthService) {}
 
-  diakbej: bejelentkezesObj = {
+  userbej: bejelentkezesObj = {
     id: '',
     jelszo: ''
   }
 
   bejelentkezesGomb() {
-    this.authservice.bejelentkezes(this.diakbej);
+    this.authservice.bejelentkezes(this.userbej);
   }
 
 }

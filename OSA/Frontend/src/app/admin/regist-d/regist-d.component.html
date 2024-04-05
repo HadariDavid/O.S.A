@@ -1,6 +1,6 @@
 <app-header-a></app-header-a>
 <div class="container">
-    <div class="login-form">
+    <div class="regist-form">
         <h1>Diák Regisztráció</h1>
         <hr>
         <br>
@@ -52,7 +52,7 @@
                     </div><br>
                     <label>Születési Idő:</label>
                     <div>
-                        <input type="date" placeholder="Születesi Idő" title="Születesi Idő" [(ngModel)]="ujdiak.szuletesiDatum" required>
+                        <input class="date-short" type="date" placeholder="Születesi Idő" title="Születesi Idő" [(ngModel)]="ujdiak.szuletesiDatum" required>
                     </div>
                     <label>Születési Ország:</label>
                     <div class="text-container">
@@ -124,11 +124,11 @@
                     </div>
                     <label>Jogviszony Kezdete:</label>
                     <div>
-                        <input type="date" placeholder="Jogviszony Kezdete" title="Jogviszony Kezdete" [(ngModel)]="ujdiak.jogviszonyKezdete" required>
+                        <input class="date-short" type="date" placeholder="Jogviszony Kezdete" title="Jogviszony Kezdete" [(ngModel)]="ujdiak.jogviszonyKezdete" required>
                     </div>
                     <label>Jogviszony Vége:</label>
                     <div>
-                        <input type="date" placeholder="Jogviszony Vége" title="Jogviszony Vége" [(ngModel)]="ujdiak.jogviszonyVartVege" required>
+                        <input class="date-short" type="date" placeholder="Jogviszony Vége" title="Jogviszony Vége" [(ngModel)]="ujdiak.jogviszonyVartVege" required>
                     </div>
                     <hr>
                     <label>Képzés:</label>
@@ -139,7 +139,7 @@
                     <hr>
                     <label>Egyéb információk:</label>
                     <div class="text-container">
-                        <input type="text" class="form-control ex-long" placeholder="Egyéb információk" title="Egyéb információk" maxlength="200" [(ngModel)]="ujdiak.egyeb">
+                        <textarea class="form-control" placeholder="Egyéb információk" title="Egyéb információk" maxlength="255" [(ngModel)]="ujdiak.egyeb"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary" (click)="regisztralasGomb()">Diák Regisztrálása</button>

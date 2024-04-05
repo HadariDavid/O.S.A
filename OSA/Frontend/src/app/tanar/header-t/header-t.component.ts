@@ -15,7 +15,7 @@ export class HeaderTComponent {
 
   kijelentkezes(){
 
-    
+    this.authservice.kijelentkezes();
 
   }
 
