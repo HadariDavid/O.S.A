@@ -19,7 +19,7 @@ const CsengetesiRendModel = require("../dbModels/csengetesiRend.model");
 
 async function getDiak(req, res){
 
- const date = new Date(Date.now());
+const date = new Date(Date.now());
 var maiOrarend;
 const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
 
@@ -27,7 +27,7 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
     DiakadatlapModel.findOne({where:{ id: id}}).then(async (diak)=> {
         if(diak == null){
             return res.status(404).json({
-                error:true,
+               succes:false,
                 message:"nincs ilyen felhasználó"
             });
         }else{
@@ -36,7 +36,7 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
             Promise.all([
             tanar = await TanaradatlapModel.findOne({where:{osztalyId: diak.osztalyId}}),
             jegyek = await OsztalyzatModel.findAll({where:{tanuloId: id}}),
-            orarend = await oraModel.findAll({where:{azonosito:/*diak.osztalyId*/"2/14c"}}),
+            orarend = await oraModel.findAll({where:{azonosito:diak.osztalyId}}),
             orak = await CsengetesiRendModel.findAll(),
             ]).then(() => {
                     ///////////////////////////felhasználó órarendjének lekérése
@@ -50,30 +50,26 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
 
                     ///////////////jelenlegi és következő óra
 
-                    console.log(date.getHours() + " : " + date.getMinutes());
+                    //console.log(date.getHours() + " : " + date.getMinutes());
 
                     var oraJ;
                     var oraK;
+                      
+                    for(let i = 0; i < orak.length; i++){
+                    let beÓ = parseInt(orak[(i)].becsengo.split(":")[0]); //becsengetés órája
+                    let beP = parseInt(orak[(i)].becsengo.split(":")[1]);   //becsengetés perce
+                    let kiÓ = parseInt(orak[(i)].kicsengo.split(":")[0]);   //kicsengetés órája
+                    let kiP = parseInt(orak[(i)].kicsengo.split(":")[1]);
 
-                    for(let element in orak){
-                    let beÓ = orak[element].becsengo.split(":")[0]; //becsengetés órája
-                    let beP = orak[element].becsengo.split(":")[1];   //becsengetés perce
-                    let kiÓ = orak[element].kicsengo.split(":")[0];   //kicsengetés órája
+                    if( (beÓ <= date.getHours()) && (beP <= date.getMinutes())){
 
-                    if( beÓ <= date.getHours() && date.getHours() < kiÓ){
-                    if(beP <= date.getMinutes()){
-                            var oraX = `ora${orak[element].id}`;
-                            console.log(oraX);
-                            oraJ = orarend["ora1"];
-                            console.log(orarend.ora1);
-                            oraX = `ora${(orak[element].id + 1)}`;
-                            oraK = orarend[oraX];
-                            console.log(oraK);
-                            
-                    }else{
-                            console.log("szünet");
+                                   oraX = `ora${(i+1)}`;
+                                   oraJ = maiOrarend[oraX];
+                                   oraX = `ora${(i+2)}`;
+                                    oraK = maiOrarend[oraX];
+                                    
                     }
-                    }
+                    
                     }
 
                     ///////////////////////////////////////////////////////////////////////
@@ -88,7 +84,7 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
                     ///////////////////////////////////////
 
                     return res.status(200).json({
-                        error:false,
+                       succes:true,
                         message:"sikeres adatlekérés",
                         data:{
                             nev: diak.csaladNev + " " + diak.keresztNev,
@@ -111,7 +107,7 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
             }).catch((err) => {
                 console.log(err);
                 return res.status(502).json({
-                    error:true,
+                   succes:false,
                     message:"adatbázis hiba"
                 })
             })
@@ -121,42 +117,145 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
     }).catch((err) =>{
         console.log(err);
         return res.status(502).json({
-            error:true,
+           succes:false,
             message:"adatbázis hiba"
         })
     });
 
 }
 
+function getAllDiakAdat(req, res){
+    const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
+    DiakadatlapModel.findOne({where:{ id: id}}).then(async (diak)=> {
+        if(diak == null){
+            return res.status(404).json({
+               succes:false,
+                message:"nincs ilyen felhasználó"
+            });
+
+        }else{
+
+            return res.status(200).json({
+                succes:true,
+                message:"sikeres lekérdezés",
+                data:diak
+            })
+
+        }
+    }).catch((err)=>{
+        console.log(err);
+        return res.status(502).json({
+           succes:false,
+            message:"adatbázis hiba"
+        })
+    });
+
+}
 
 //////////////////////////////////////////////////////////////////////////////////
 
 
 
-function getTanar(req, res){
+async function getTanar(req, res){
 
     const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
 
 
-    TanaradatlapModel.findOne({where:{ id : id}}).then((tanar)=> {
+    TanaradatlapModel.findOne({where:{ id : id}}).then( async (tanar)=> {
         if(tanar == null){
             return res.status(404).json({
-                error:true,
+               succes:false,
                 message:"nincs ilyen felhasználó"
             });
         }else{
-            return res.status(200).json({
-                error:false,
-                message:"sikeres adatlekérés",
-                data:{
-                    nev: tanar.csaladNev + " " + tanar.keresztNev
-                }
-            })
+/*
+         
+            //megvárjuk a szükséges adatok lekérdezését az adatbázisból
+            Promise.all([
+                osztaly = await TanaradatlapModel.findAll({where:{osztalyId: diak.osztalyId}}),
+                jegyek = await OsztalyzatModel.findAll({where:{tanuloId: id}}),
+                orarend = await oraModel.findAll({where:{azonosito:tanar.id}}),
+                orak = await CsengetesiRendModel.findAll(),
+                ]).then(() => {
+                        ///////////////////////////felhasználó órarendjének lekérése
+                            
+                        maiOrarend = orarend[(date.getDay()-1)];
+    
+                        if(date.getDay() == 0 && date.getDay() == 6){
+                        maiOrarend = "mai nap nincs tanítási óra";
+                        }
+    
+    
+                        ///////////////jelenlegi és következő óra
+    
+                        //console.log(date.getHours() + " : " + date.getMinutes());
+    
+                        var oraJ;
+                        var oraK;
+                          
+                        for(let i = 0; i < orak.length; i++){
+                        let beÓ = parseInt(orak[(i)].becsengo.split(":")[0]); //becsengetés órája
+                        let beP = parseInt(orak[(i)].becsengo.split(":")[1]);   //becsengetés perce
+                        let kiÓ = parseInt(orak[(i)].kicsengo.split(":")[0]);   //kicsengetés órája
+                        let kiP = parseInt(orak[(i)].kicsengo.split(":")[1]);
+    
+                        if( (beÓ <= date.getHours()) && (beP <= date.getMinutes())){
+    
+                                       oraX = `ora${(i+1)}`;
+                                       oraJ = maiOrarend[oraX];
+                                       oraX = `ora${(i+2)}`;
+                                        oraK = maiOrarend[oraX];
+                                        
+                        }
+                        
+                        }
+    
+                        ///////////////////////////////////////////////////////////////////////
+    
+                        ////////////////////átlag kiszámítása
+                            let atlag = 0;
+                            jegyek.forEach(jegy => {
+                                atlag += jegy.osztalyzat;
+                            });
+                            atlag = atlag/jegyek.length;
+                            
+                        ///////////////////////////////////////
+    
+                        return res.status(200).json({
+                           succes:true,
+                            message:"sikeres adatlekérés",
+                            data:{
+                                nev: diak.csaladNev + " " + diak.keresztNev,
+                                szak: diak.Kepzes,
+                                osztaly: diak.osztalyId,
+                                osztalyFo: tanar.csaladNev + " " + tanar.keresztNev,
+                                osztalyFoTel: tanar.telefon,
+                                osztalyFoEmail: tanar.email,
+                                jegyek:jegyek, //array
+                                atlag: atlag,
+                                napiOrarend: maiOrarend, //object
+                                aktualisOra:{
+                                    jelenOra: oraJ,
+                                    kovOra: oraK
+                                }
+                            }
+                        })
+    
+    
+                }).catch((err) => {
+                    console.log(err);
+                    return res.status(502).json({
+                       succes:false,
+                        message:"adatbázis hiba"
+                    })
+                })*/
+                
+            
         }
     }).catch((err) =>{
         console.log(err);
         return res.status(502).json({
-            error:true,
+           succes:false,
             message:"adatbázis hiba"
         })
     });
@@ -168,4 +267,4 @@ function getTanar(req, res){
 
 
 
-module.exports = {getDiak, getTanar};
+module.exports = {getDiak,getAllDiakAdat, getTanar};

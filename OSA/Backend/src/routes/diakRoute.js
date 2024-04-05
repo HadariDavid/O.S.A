@@ -18,7 +18,7 @@ const profilController = require("../controllers/profilControllers");
 //metódusok
 diakRouter.get("/diak", tokenHitelesites, profilController.getDiak);
 
-diakRouter.get("/diak/adatok",tokenHitelesites,/*controllet*/);
+diakRouter.get("/diak/adatok",tokenHitelesites, profilController.getAllDiakAdat);
 
 diakRouter.get("/diak/orarend",tokenHitelesites,/*controllet*/);
 
