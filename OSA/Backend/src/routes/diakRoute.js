@@ -20,7 +20,7 @@ diakRouter.get("/diak", tokenHitelesites, profilController.getDiak);
 
 diakRouter.get("/diak/adatok",tokenHitelesites, profilController.getAllDiakAdat);
 
-diakRouter.get("/diak/orarend",tokenHitelesites,/*controllet*/);
+diakRouter.get("/diak/orarend",tokenHitelesites, profilController.getOrarend);
 
 diakRouter.get("/diak/osztalyzatok",tokenHitelesites,/*controllet*/);
 

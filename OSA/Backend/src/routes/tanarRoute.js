@@ -14,11 +14,12 @@ const tanarRouter = express.Router();
 
 //Controller
 const profilController = require("../controllers/profilControllers");
+const hianyzasController = require("../controllers/mulasztasokController");
 
 //metódusok
 tanarRouter.get("/tanar", tokenHitelesites, profilController.getTanar);
 
-tanarRouter.get("/tanar/adatok",tokenHitelesites,/*controllet*/);
+tanarRouter.get("/tanar/adatok",tokenHitelesites,profilController.getAllTanarAdat);
 
 tanarRouter.get("/tanar/orarend",tokenHitelesites,/*controllet*/);
 
@@ -34,7 +35,10 @@ tanarRouter.get("/tanar/osztalyzatok",tokenHitelesites,/*controllet*/);
 
 tanarRouter.get("/tanar/osztalyzatok/tantargynev/atlagszamitas",tokenHitelesites,/*controllet*/);
 
-tanarRouter.get("/tanar/mulasztasok",tokenHitelesites,/*controllet*/);
+tanarRouter.get("/tanar/mulasztasok",tokenHitelesites, hianyzasController.hianyzasokTanarOldalLeker);
+tanarRouter.put("/tanar/mulasztasok",tokenHitelesites, hianyzasController.hianyzaIras);
+tanarRouter.patch("/tanar/mulasztasok",tokenHitelesites, hianyzasController.igazolas);
+
 
 
 module.exports = tanarRouter;

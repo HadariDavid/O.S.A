@@ -18,7 +18,12 @@ const Tanaradatlap = sequelize.define("Tanardatlap", {
     type:DataTypes.TINYINT,
     allowNull:false,
   },
-  osztalyId : {
+  osztalyFoId : {
+    type: DataTypes.STRING,
+    allowNull:false,
+    comment:"azonosító ami jelzi a diák osztályát",
+  },
+  osztalyok: {
     type: DataTypes.STRING,
     allowNull:false,
     comment:"azonosító ami jelzi a diák osztályát",

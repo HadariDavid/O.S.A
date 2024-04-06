@@ -79,7 +79,7 @@ sequelize.authenticate().then(() => {
 //blacklist ellenörzés
 
 
-        nodeCron.schedule('* */55 * * *', () => {
+        nodeCron.schedule('*/55 * * * *', () => {
             FeketeListaModel.destroy({
                 where: {
                     exp: {[Op.lt]:Date.now() /1000}

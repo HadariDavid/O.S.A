@@ -13,7 +13,7 @@ const jwtSecretKey = "ARááákEgyeKiALeskelődőSzemed";
 
 
 async function tokenHitelesites(req, res, next){
-    console.log(req.headers);
+
     try{
         const token = req.headers.authorization.split(' ')[1];
         //check for token
