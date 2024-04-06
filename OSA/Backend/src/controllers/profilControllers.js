@@ -43,14 +43,14 @@ const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
             orak = await CsengetesiRendModel.findAll(),
             ]).then(() => {
                     ///////////////////////////felhasználó órarendjének lekérése
-                        
-                    maiOrarend = orarend[(date.getDay()-1)];
+                    
 
                     if(date.getDay() == 0 || date.getDay() == 6){
-                    maiOrarend = "mai nap nincs tanítási óra";
+                        maiOrarend = "mai nap nincs tanítási óra";
+                    }else{
+                        maiOrarend = orarend[date.toLocaleString('hu-HU', {  weekday: 'long' })];
                     }
-
-
+    
                     ///////////////jelenlegi és következő óra
 
                     //console.log(date.getHours() + " : " + date.getMinutes());
@@ -228,7 +228,7 @@ async function getTanar(req, res){
 
             //megvárjuk a szükséges adatok lekérdezését az adatbázisból
             Promise.all([
-                osztalyok = await DiakadatlapModel.findAll({where:{osztalyId:tanar.osztalyok.split(",") }}),
+               
                 orarend = await oraModel.findAll({where:{azonosito:"NáM"/*tanar.id*/}}),
                 orak = await CsengetesiRendModel.findAll(),
                 ]).then(() => {
@@ -271,7 +271,7 @@ async function getTanar(req, res){
                             data:{
                                 nev: tanar.csaladNev + " " + tanar.keresztNev,
                                 osztaly: tanar.osztalyFoId,
-                                osztalyok: osztalyok,
+                                osztalyok: tanar.osztalyok,
                                 napiOrarend: maiOrarend, //object
                                 aktualisOra:{
                                     jelenOra: oraJ,
@@ -329,7 +329,34 @@ function getAllTanarAdat(req, res){
 
 }
 
+function tanarGetOsztalyok(req, res){
+
+    const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
+    TanaradatlapModel.findOne({where:{ id: id}}).then(async (tanar)=> {
+        DiakadatlapModel.findAll({where:{osztalyId:tanar.osztalyok.split(",") }}).then((osztalyok)=>{
+            return res.status(200).json({
+                succes:true,
+                message:"sikeres lekérés",
+                data:osztalyok
+            })
+        }).catch((err)=>{
+            console.log(err)
+            return res.status(500).json({
+                succes:false,
+                message:"adatbázis hiba"
+            })
+        })
+
+    }).catch((err)=>{
+        console.log(err)
+        return res.status(500).json({
+            succes:false,
+            message:"adatbázis hiba"
+        })
+    });
+
+ 
+}
 
 
-
-module.exports = {getDiak,getAllDiakAdat, getOrarend, getTanar,getAllTanarAdat};
+module.exports = {getDiak,getAllDiakAdat, getOrarend, tanarGetOsztalyok, getTanar,getAllTanarAdat};

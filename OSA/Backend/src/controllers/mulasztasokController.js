@@ -201,7 +201,21 @@ function hianyzasokTanarOldalLeker(req, res){
 //////////////////////////////////////////////////////////////////////////////////////////
 
 function hianyzasokDiakOldal(req,res){
-    return res.status(500)
+    const {id} = jwt.decode(req.headers.authorization.split(' ')[1]);
+    HianyzasokModel.findAll({where:{azonosito: id}}).then((hianyzasok)=> {
+
+        return res.status(200).json({
+            succes:true,
+            message:"sikeres lekérés",
+            data:hianyzasok
+        })
+    }).catch((err)=>{
+        console.log(err);
+        return res.status(500).json({
+            succes:false,
+            message:"adatbázis hiba"
+        })
+    })
 }
 
-module.exports={hianyzasokTanarOldalLeker, hianyzaIras, igazolas};
+module.exports={hianyzasokTanarOldalLeker,hianyzasokDiakOldal, hianyzaIras, igazolas};
