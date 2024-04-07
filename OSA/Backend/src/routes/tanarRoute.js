@@ -15,15 +15,20 @@ const tanarRouter = express.Router();
 //Controller
 const profilController = require("../controllers/profilControllers");
 const hianyzasController = require("../controllers/mulasztasokController");
+const osztalyzatokController = require("../controllers/osztalyzatokController");
+
 
 //metódusok
+
+//profil/////////////
 tanarRouter.get("/tanar", tokenHitelesites, profilController.getTanar);
 
 tanarRouter.get("/tanar/adatok",tokenHitelesites,profilController.getAllTanarAdat);
 
 tanarRouter.get("/tanar/orarend",tokenHitelesites,profilController.getOrarend );
 
-tanarRouter.get("/tanar/osztalyok",tokenHitelesites,/*controllet*/);
+//////osztalyok//////////
+tanarRouter.get("/tanar/osztalyok",tokenHitelesites,profilController.tanarGetOsztalyok);
 
 tanarRouter.get("/tanar/osztalyok/atlag",tokenHitelesites,/*controllet*/);
 
@@ -31,10 +36,14 @@ tanarRouter.get("/tanar/osztalyok/diakok",tokenHitelesites,profilController.tana
 
 tanarRouter.get("/tanar/osztalyok/diakok/ertekeles",tokenHitelesites,/*controllet*/);
 
-tanarRouter.get("/tanar/osztalyzatok",tokenHitelesites,/*controllet*/);
+//osztalyzatok///////////////////////////
+tanarRouter.put("/tanar/osztalyzatok",tokenHitelesites, osztalyzatokController.jegyAdas);
 
-tanarRouter.get("/tanar/osztalyzatok/tantargynev/atlagszamitas",tokenHitelesites,/*controllet*/);
+tanarRouter.get("/tanar/osztalyzatok",tokenHitelesites, osztalyzatokController.leKeres);
 
+tanarRouter.get("/tanar/osztalyzatok/atlagszamitas",tokenHitelesites,osztalyzatokController.atlag);
+
+//mulasztasok/////////////////////////////////
 tanarRouter.get("/tanar/mulasztasok",tokenHitelesites, hianyzasController.hianyzasokTanarOldalLeker);
 
 tanarRouter.put("/tanar/mulasztasok",tokenHitelesites, hianyzasController.hianyzaIras);

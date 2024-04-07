@@ -15,7 +15,6 @@ const DiakadatlapModel = require("../dbModels/diakadatlap.model");
 const OsztalyzatModel = require("../dbModels/osztalyzat.model");
 const oraModel = require ("../dbModels/ora.model");
 const CsengetesiRendModel = require("../dbModels/csengetesiRend.model");
-const { log } = require("node:console");
 
 ///////////////////////////////////////////////////
 
