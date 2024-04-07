@@ -30,7 +30,7 @@ async function getUser(req, res){
                         }); 
                     }else{
                         res.status(200).json({
-                        error:false,
+                       succes:true,
                         message:"lekérés sikeres",
                         data: diak
                         });
@@ -39,7 +39,7 @@ async function getUser(req, res){
         }else{
 
             res.status(200).json({
-            error:true,
+           succes:false,
             message:"lekérés sikeres",
             data: tanar
             });
@@ -61,7 +61,7 @@ async function patchUser(req,res){
             }
                     tanar.save().then(()=>{
                             return res.status(200).json({
-                                error:false, 
+                               succes:true, 
                                 message: "sikeres frissités"
                             });
                         })
@@ -80,7 +80,7 @@ async function patchUser(req,res){
 
                             diak.save().then(()=>{
                                 return res.status(200).json({
-                                    error:false, 
+                                   succes:true, 
                                     message: "sikeres frissités"
                                 });
                             })
@@ -88,14 +88,14 @@ async function patchUser(req,res){
                     
             } else{
                 return res.status(404).json({
-                    error:true,
+                   succes:false,
                     message:"Nincs ilyen felhasználó"
                 })
             }
     }catch(error){
         console.log(error);
         return res.status(520).json({
-            error:true,
+           succes:false,
             message:"váratlan hiba",
             cause:error
         })
@@ -117,7 +117,7 @@ function deleteUser(req,res){
                     }).then((tanar) => {
                         tanar.destroy();
                         return res.status(200).json({
-                            status:"succes",
+                            succes:true,
                             message:"sikeres törlés"
                           
                         })
@@ -125,7 +125,7 @@ function deleteUser(req,res){
             }else{
                  diak.destroy();
                  return res.status(200).json({
-                    status:"succes",
+                    succes:true,
                     message:"sikeres törlés"
                 })
             }
@@ -133,7 +133,7 @@ function deleteUser(req,res){
     }catch(error){
         console.log(error);
         return res.status(500).json({
-            error:true,
+           succes:false,
             message:"adatbázis hiba"
         })
     }   

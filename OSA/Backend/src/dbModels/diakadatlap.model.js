@@ -177,17 +177,7 @@ const Diakadatlap = sequelize.define("Diakadatlap", {
     type: DataTypes.STRING,
     allowNull:true,
     comment:"egyedi megjegyzés ha van pl bejárós"
-  },
-  igaztolatlanHianyzas :{
-    type: DataTypes.INTEGER,
-    allowNull:true,
-    comment:"igazolatlan hiányzások száma"
-  },
-  igazoltHianyzas :{
-    type: DataTypes.STRING,
-    allowNull:true,
-    comment:"igazolt hiányzások száma"
-  },
+  }
 },{
     tableName: "diakadatlap",
     timestamps:false

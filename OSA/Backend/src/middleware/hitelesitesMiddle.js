@@ -17,7 +17,7 @@ async function tokenHitelesites(req, res, next){
     try{
         const token = req.headers.authorization.split(' ')[1];
         //check for token
-        if (!token) {
+        if (token == null || token == undefined) {
             return res.status(401)
                 .json(
                     {
@@ -29,7 +29,7 @@ async function tokenHitelesites(req, res, next){
 
         if(await FeketeListaModel.findOne({where:{token:token}}) !== null){
            return res.status(401).json({
-                error:true,
+               succes:false,
                 messagüzenet:"hozzáférés megtagadva (blacklisted)"
             })
         }
@@ -39,7 +39,7 @@ async function tokenHitelesites(req, res, next){
             next();
             }else{
                 return res.status(520).json({
-                    error:true,
+                   succes:false,
                     message:"hitelesítés közben hiba történt",
                     type:1 //token nem hitelesíthető
                 });
@@ -52,7 +52,7 @@ async function tokenHitelesites(req, res, next){
     }catch(error){
         console.log(error);
         return res.status(401).json({
-            error:true,
+           succes:false,
             messagüzenet:"hozzáférés megtagadva"
         })
     }
@@ -76,7 +76,7 @@ async function adminHitelesites(req, res, next){
 
         if(await FeketeListaModel.findOne({where:{token:token}}) !== null){
            return res.status(401).json({
-                error:true,
+               succes:false,
                 messagüzenet:"hozzáférés megtagadva (blacklisted)"
             })
         }
@@ -88,14 +88,14 @@ async function adminHitelesites(req, res, next){
                     next();                  
                 }else{
                     return res.status(401).json({
-                        error:true,
+                       succes:false,
                         messagüzenet:"hozzáférés megtagadva nem admin"
                     })
                 }
 
             }else{
                 return res.status(520).json({
-                    error:true,
+                   succes:false,
                     message:"hitelesítés közben hiba történt",
                 });
             }
@@ -107,7 +107,7 @@ async function adminHitelesites(req, res, next){
     }catch(error){
         console.log(error);
         return res.status(401).json({
-            error:true,
+           succes:false,
             messagüzenet:"hozzáférés megtagadva"
         })
     }

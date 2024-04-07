@@ -19,6 +19,8 @@ const OsztalyzatModel = require("./dbModels/osztalyzat.model");
 const DiakadatlapModel = require("./dbModels/diakadatlap.model");
 const FeketeListaModel = require("./dbModels/feketelista.model");
 const OraModel = require("./dbModels/ora.model");
+const HianyzasokModel = require("./dbModels/hianyzasok.model");
+const dokumentaltOrakModel =require("./dbModels/dokumentaltOrak.model");
 
 //////////////////////////////////////
 
@@ -54,6 +56,10 @@ sequelize.authenticate().then(() => {
     sequelize.modelManager.addModel(OsztalyzatModel);
     sequelize.modelManager.addModel(DiakadatlapModel);
     sequelize.modelManager.addModel(FeketeListaModel);
+    sequelize.modelManager.addModel(OraModel);
+    sequelize.modelManager.addModel(HianyzasokModel);
+    sequelize.modelManager.addModel(dokumentaltOrakModel);
+
     
     try{
     sequelize.sync();
@@ -73,7 +79,7 @@ sequelize.authenticate().then(() => {
 //blacklist ellenörzés
 
 
-        nodeCron.schedule('* */55 * * *', () => {
+        nodeCron.schedule('*/55 * * * *', () => {
             FeketeListaModel.destroy({
                 where: {
                     exp: {[Op.lt]:Date.now() /1000}

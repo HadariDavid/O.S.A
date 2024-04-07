@@ -13,7 +13,7 @@ const FeketeLista = sequelize.define("FeketeLista", {
         allowNull:false
     },
     exp:{
-        type:DataTypes.TIME,
+        type:DataTypes.INTEGER,
         allowNull:true,
     }
 
