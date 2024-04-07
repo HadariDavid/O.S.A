@@ -33,7 +33,7 @@ function jegyAdas(req, res){
         osztalyzat:req.body.osztalyzat,
         datum: date,
         oka:req.body.oka,
-        tanar: nev
+        tanar: id
     })
 
     osztalyzat.save().then(()=>{

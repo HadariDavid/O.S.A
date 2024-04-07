@@ -3,21 +3,36 @@ const {DataTypes} = require("sequelize");
 const sequelize = require("../db");
 
 const dokumentaltOrak = sequelize.define("dokumentaltOrak", {
-    datuma: {
-        type: DataTypes.DATE,
+    id:{
+        type: DataTypes.INTEGER,
+        allowNull:false,
+        autoIncrement:true,
+        primaryKey:true
+    },
+    osztaly:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    
+    },
+    tantargy: {
+        type: DataTypes.STRING,
         allowNull: false,
        
     },
-    orakSzama: {
+    oraSzama: {
         type: DataTypes.INTEGER,
         allowNull: false,
       
     },
-    azonosito:{
-        type: DataTypes.STRING,
+    tanar:{
+        type:DataTypes.STRING,
         allowNull:false,
-        comment:"diák azonosítója"
+    },
+    datum:{
+        type:DataTypes.DATE,
+        allowNull:false
     }
+
 }, {
     tableName:"dokumentaltorak",
     timestamps:false
