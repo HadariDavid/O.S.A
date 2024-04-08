@@ -14,7 +14,16 @@ const Tanaradatlap = sequelize.define("Tanardatlap", {
         allowNull: true,
         comment:"jelszó",
       },
-  osztalyId : {
+  admin:{
+    type:DataTypes.TINYINT,
+    allowNull:false,
+  },
+  osztalyFoId : {
+    type: DataTypes.STRING,
+    allowNull:false,
+    comment:"azonosító ami jelzi a diák osztályát",
+  },
+  osztalyok: {
     type: DataTypes.STRING,
     allowNull:false,
     comment:"azonosító ami jelzi a diák osztályát",
@@ -28,6 +37,10 @@ const Tanaradatlap = sequelize.define("Tanardatlap", {
     type: DataTypes.STRING,
     allowNull:false,
     comment:"Tanuló keresztneve"
+  },
+  neme:{
+    type:DataTypes.STRING,
+    allowNull:false
   },
   szuletesiHely :{
     type: DataTypes.STRING,
@@ -49,10 +62,13 @@ const Tanaradatlap = sequelize.define("Tanardatlap", {
     allowNull:false,
     comment:"állampolgárság"
   },
-  anyanyelv :{
-    type: DataTypes.STRING,
-    allowNull:false,
-    comment:"tanuló anyanyelve"
+  AnyjaLeanyVezetekneve:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  AnyjaLeanyKeresztneve:{
+    type:DataTypes.STRING,
+    allowNull:false
   },
   telefon :{
     type: DataTypes.STRING,
@@ -64,15 +80,25 @@ const Tanaradatlap = sequelize.define("Tanardatlap", {
     allowNull:false,
     comment:"tanuló e-mail"
   },
-  anyjaleanyneve :{
-    type: DataTypes.STRING,
+  Orszag:{
+    type:DataTypes.STRING,
     allowNull:false,
-    comment:"tanuló anyja leánykori neve"
   },
-  lakcim :{
-    type: DataTypes.STRING,
+  Iranyitoszam:{
+    type:DataTypes.INTEGER,
     allowNull:false,
-    comment:"diák lakcíme"
+  },
+  Kozseg:{
+    type:DataTypes.STRING,
+    allowNull:false,
+  },
+  Ut:{
+    type:DataTypes.STRING,
+    allowNull:false,
+  },
+  Hazszam:{
+    type:DataTypes.INTEGER,
+    allowNull:false,
   },
   taj :{
     type: DataTypes.STRING,

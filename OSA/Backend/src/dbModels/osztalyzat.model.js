@@ -4,13 +4,12 @@ const sequelize = require("../db");
 
 const Osztalyzat = sequelize.define("Osztalyzat", {
 
-/*
- `tanulo id` varchar(255) NOT NULL,
-  `tantargy id` varchar(255) NOT NULL,
-  `osztalyzat` int(11) NOT NULL,
-  `datum` date NOT NULL,
-  `oka` varchar(255) N
-*/
+  id:{
+    type: DataTypes.INTEGER,
+    allowNull:false,
+    primaryKey:true,
+    autoIncrement:true,
+},
 
 tanuloID: {
   type: DataTypes.STRING,
@@ -36,6 +35,10 @@ datum: {
 oka:{
   type: DataTypes.STRING,
   allowNull:false,
+},
+tanar:{
+  type:DataTypes.STRING,
+  allowNull:false
 }
 
 },
