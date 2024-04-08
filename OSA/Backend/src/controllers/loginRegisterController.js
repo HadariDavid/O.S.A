@@ -104,34 +104,42 @@ async function hashData(data){
 
 ////////////////////////////////////////////kijelentkezés/////////////////////////////////////////////////////
 
- let zsidé = 0;
+
 function logout(req,res){
 
+ FeketeListaModel.max("id").then((maxId)=>{
+        if(maxId == null){
+            maxId=1;
+        }else{
+            maxId = maxId+1;
+        }
+
+            const token = req.headers.authorization.split(' ')[1];
+                const {exp} = jwt.decode(token);
+
+                if(token === undefined){
+                    return res.status(400).json({
+                        status:"error",
+                        message:"nincs bejelentkezve felhasználó"
+                    })
+                }
+
+
+            const blacktoken =FeketeListaModel.build({id:maxId, token: token, exp: exp});
+
+            blacktoken.save().then(()=>{
+                    res.status(200).json({
+                    succes:true,
+                    message:"sikeres kijelentkezés"
+                });
+            });
+
+            
+
+    })
+
    
-    if(zsidé === 999999999){
-        zsidé = 1;
-    }
-
-    const token = req.headers.authorization.split(' ')[1];
-    const {exp} = jwt.decode(token);
-
-    if(token === undefined){
-        return res.status(400).json({
-            status:"error",
-            message:"nincs bejelentkezve felhasználó"
-        })
-    }
-
-
-const blacktoken =FeketeListaModel.build({id:zsidé, token: token, exp: exp});
-zsidé = zsidé+1;
-blacktoken.save().then(()=>{
-         res.status(200).json({
-        succes:true,
-        message:"sikeres kijelentkezés"
-    });
-});
-
+}
    
 }
 
