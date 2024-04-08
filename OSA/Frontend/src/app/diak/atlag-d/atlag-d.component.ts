@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderDComponent } from '../header-d/header-d.component';
 
 @Component({
-  selector: 'app-orarend-d',
+  selector: 'app-atlag-d',
   standalone: true,
   imports: [HeaderDComponent],
-  templateUrl: './orarend-d.component.html',
-  styleUrl: './orarend-d.component.css'
+  templateUrl: './atlag-d.component.html',
+  styleUrl: './atlag-d.component.css'
 })
-export class OrarendDComponent {
+export class AtlagDComponent {
 
 }

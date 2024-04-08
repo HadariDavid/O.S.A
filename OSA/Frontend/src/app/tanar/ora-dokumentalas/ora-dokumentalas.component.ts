@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderTComponent } from '../header-t/header-t.component';
 
 @Component({
-  selector: 'app-osztalyok',
+  selector: 'app-ora-dokumentalas',
   standalone: true,
   imports: [HeaderTComponent],
-  templateUrl: './osztalyok.component.html',
-  styleUrl: './osztalyok.component.css'
+  templateUrl: './ora-dokumentalas.component.html',
+  styleUrl: './ora-dokumentalas.component.css'
 })
-export class OsztalyokComponent {
+export class OraDokumentalasComponent {
 
 }

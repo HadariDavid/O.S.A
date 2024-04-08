@@ -15,6 +15,7 @@ th, td{
     height: 100%;
     border: 4px solid #ffa600;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 .data-transform{
     width: 100%;
@@ -24,12 +25,11 @@ th, td{
     border-radius: 10px;
     transition: 0.5s;
     cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 .data-transform:hover{
-    width: 100%;
-    height: 100%;
     border: 4px solid #00bdff;
-    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 187, 255, 1);
     transition: 0.5s;
     scale: 125%
 }
@@ -40,6 +40,7 @@ th, td{
     border: 4px solid #ffa600;
     border-radius: 10px;
     padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 

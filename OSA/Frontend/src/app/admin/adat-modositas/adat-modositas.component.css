@@ -1,4 +1,4 @@
-.regist-form {
+.update-form {
     max-width: 1600px;
     margin: 100px auto;
     background-color: #ffffff;
@@ -8,7 +8,18 @@
     overflow: hidden;
 }
 
-.regist-form input[type="text"], .regist-form input[type="date"] {
+.update-form-warning {
+    max-width: 1600px;
+    margin: 100px auto;
+    border: 8px solid #d13117;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.update-form input[type="text"], .update-form input[type="date"] {
     width: 25%;
     padding: 10px;
     margin-bottom: 20px;
@@ -19,23 +30,23 @@
 }
 
 /* TEXT/DATE INPUT SZÉLESSÉGEK */
-.regist-form input[type="text"].short {
+.update-form input[type="text"].short {
     width: 10%;
 }
 
-.regist-form input[type="date"].date-short{
+.update-form input[type="date"].date-short{
     width: 12%;
 }
 
-.regist-form input[type="text"].mid {
+.update-form input[type="text"].mid {
     width: 20%;
 }
 
-.regist-form input[type="text"].long {
+.update-form input[type="text"].long {
     width: 30%;
 }
 
-.regist-form input[type="text"].ex-long {
+.update-form input[type="text"].ex-long {
     width: 55%;
 }
 
@@ -54,8 +65,8 @@ textarea{
 
 
 
-/* FORM GOMB BEÁLLÍTÁSOK */
-.regist-form button {
+/*GOMB BEÁLLÍTÁSOK */
+button {
     width: 25%;
     padding: 10px;
     background-color: #ffa600;
@@ -66,16 +77,51 @@ textarea{
     font-weight: bold;
     float: right;
     overflow: hidden;
+    transition: 0.5s;
 }
 
-.regist-form button:hover {
+button:hover {
     background-color: #ffbb3b;
+    transition: 0.5s;
+    scale: 102%;
 }
+
+.btn-warning {
+    width: 25%;
+    padding: 10px;
+    background-color: #d13117;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    float: right;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.btn-warning:hover {
+    background-color: #E63c1E;
+    transition: 0.5s;
+    scale: 102%;
+}
+
+
+
+
 
 h1{
     color: #ffa600;
     font-weight: bold;
 }
+.update-form-warning h1{
+    color: #d13117;
+    font-weight: bold;
+}
+.update-form-warning p{
+    font-weight: bold;
+}
+
 
 .text-container{
     display: flex;
@@ -146,52 +192,4 @@ input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-}
-
-
-
-
-.regist-form button.addBtn {
-    width: 10%;
-    padding: 5px;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
-    background-color: #ffa600;
-    border: none;
-    border-radius: 64px;
-    color: #000000;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 32px;
-    float: left;
-    overflow: hidden;
-}
-
-.regist-form button.addBtn:hover {
-    background-color: #ffbb3b;
-}
-
-#plu{
-    transition: 0.5s;   
-}
-#plu:hover{
-    transition: 0.5s;
-    scale: 102%;
-}
-
-
-#min{
-    transition: 0.5s;   
-}
-#min:hover{
-    transition: 0.5s;
-    scale: 102%;
-}
-
-button{
-    transition: 0.5s;
-}
-button:hover{
-    transition: 0.5s;
-    scale: 102%;
 }

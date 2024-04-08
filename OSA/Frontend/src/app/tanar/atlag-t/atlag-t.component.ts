@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderTComponent } from '../header-t/header-t.component';
 
 @Component({
-  selector: 'app-osztalyok',
+  selector: 'app-atlag-t',
   standalone: true,
   imports: [HeaderTComponent],
-  templateUrl: './osztalyok.component.html',
-  styleUrl: './osztalyok.component.css'
+  templateUrl: './atlag-t.component.html',
+  styleUrl: './atlag-t.component.css'
 })
-export class OsztalyokComponent {
+export class AtlagTComponent {
 
 }

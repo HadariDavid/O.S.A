@@ -64,6 +64,8 @@ export class RegistTComponent {
 
 
 
+
+// OM azonosító switch
   isChecked(event: any) {
     this.isDisabled = !event.target.checked;
     if (this.isDisabled) {
@@ -74,6 +76,7 @@ export class RegistTComponent {
     }
   }
 
+// Regisztrálás gomb
   regisztralasGomb() {
     this.authService.tanarReg(this.ujtanar);
   }

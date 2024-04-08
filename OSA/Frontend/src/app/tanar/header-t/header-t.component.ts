@@ -14,9 +14,7 @@ export class HeaderTComponent {
   constructor(protected authservice: AuthService) {}
 
   kijelentkezes(){
-
     this.authservice.kijelentkezes();
-
   }
 
 }
