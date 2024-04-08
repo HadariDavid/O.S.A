@@ -7,13 +7,13 @@
 	},
 	"item": [
 		{
-			"name": "/login",
+			"name": "/bejelentkezes",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"Nám\",\r\n    \"jelszo\":\"Kukásauto!\"\r\n}",
+					"raw": "{\r\n    \"id\":\"TeA\",\r\n    \"jelszo\":\"AdminJelszo\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,57 +21,196 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/login",
+					"raw": "http://localhost:3000/bejelentkezes",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"login"
+						"bejelentkezes"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/registration/teacher",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{       \r\n            \"csaladNev\":\"Nádori\",\r\n            \"keresztNev\":\"mama\",\r\n            \"szuletesiHely\":\"sátoraljaújhely\",\r\n            \"szuletesiDatum\":\"1999.01.01\",\r\n            \"szuletesiOrszag\":\"Magyarország\",\r\n            \"allampolgarsag\":\"magyar\",\r\n            \"anyanyelv\":\"magyar\",\r\n            \"telefon\":\"+36325578898\",\r\n            \"email\":\"email2@email.com\",\r\n            \"anyjaleanyneve\":\"Nádori Mama mamája\",\r\n            \"lakcim\":\"újhely city, 3980, izé utca\",\r\n            \"taj\":123456789,\r\n            \"adoSzam\":1234567891,\r\n            \"bankszámlaszám\":\"12345678998-765432112345\",\r\n            \"oktatasiAzonosito\":1000,\r\n            \"szerep\":\"Tanár\",\r\n            \"jogviszonyKezdete\":\"2025.08.30\",\r\n            \"jogviszonyVartVege\":\"2020.09.1\",\r\n            \"jogviszony\":\"teljes munkaidős tanár\",\r\n            \"szakok\":\"informatika\",\r\n            \"jelszo\":\"Kiskutya2\"\r\n            \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/registration/teacher",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"registration",
-						"teacher"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/hitelesites",
+			"name": "/kijelentkezes",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUazI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiLDgWxlaMOhbmRyw7MiLCJ1c2VySUQiOiI3MzgyMTkyNjcxNTIiLCJpYXQiOjE3MDkzODg2MDcsImV4cCI6MTcwOTM5MjIwN30.k_8SPienwVWtbiVthjsfY0Hd4ijkmd1Jc_axATVXDRg",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJtYW1hIiwidXNlcklEIjoiTsOhbSIsImFkbWluIjowLCJpYXQiOjE3MTEyODk2ODIsImV4cCI6MTcxMTI5MjY4Mn0.FRydiYvr0XbuTYDPc5mqT9r481jNYnvTC3ZfWh2_wTo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/kijelentkezes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"kijelentkezes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/admin/regist-t",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJCw6Fjc2kiLCJ1c2VySUQiOiJBZEIiLCJhZG1pbiI6MCwiaWF0IjoxNzExMjgyNjU5LCJleHAiOjE3MTEyODU2NTl9.Cl1cwusJz3FxDNvZU5yUA9c9Y3NaXAhf0UEUctExhOk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \r\n            \"csaladNev\":\"ratatuile\",\r\n            \"keresztNev\":\"Báasd\",\r\n            \"neme\":0,\r\n            \"admin\":1,\r\n            \"szuletesiHely\":\"sátoraljaújhely\",\r\n            \"szuletesiDatum\":\"1999.01.01\",\r\n            \"szuletesiOrszag\":\"Magyarország\",\r\n            \"allampolgarsag\":\"magyar\",\r\n            \"anyanyelv\":\"magyar\",\r\n            \"telefon\":\"+36325578898\",\r\n            \"email\":\"email2@email.com\",\r\n            \"AnyjaLeanyVezetekneve\":\"Nádori\",\r\n            \"AnyjaLeanyKeresztneve\":\"Mama mája\",\r\n            \"Orszag\":\"Magyarország\",\r\n            \"Iranyitoszam\":3980,\r\n            \"Kozseg\":\"Újhely city\",\r\n            \"Ut\":\"izé utca\",\r\n            \"Hazszam\":21,\r\n            \"taj\":123456789,\r\n            \"adoSzam\":1234567891,\r\n            \"bankszámlaszám\":\"12345678998-765432112345\",\r\n            \"oktatasiAzonosito\":100023345,\r\n            \"szerep\":\"Tanár\",\r\n            \"jogviszonyKezdete\":\"2025.08.30\",\r\n            \"jogviszonyVartVege\":\"2020.09.1\",\r\n            \"jogviszony\":\"teljes munkaidős tanár\",\r\n            \"szakok\":\"informatika\",\r\n            \"jelszo\":\"Kiskutya3\"\r\n            \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/admin/regist-t",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"admin",
+						"regist-t"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/admin/regist-d",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJtYW1hIiwidXNlcklEIjoiTsOhbSIsImFkbWluIjowLCJpYXQiOjE3MTEyODk2ODIsImV4cCI6MTcxMTI5MjY4Mn0.FRydiYvr0XbuTYDPc5mqT9r481jNYnvTC3ZfWh2_wTo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":738219267152, //OM azonosító\r\n    \"osztalyId\":\"1/13c\",\r\n            \"csaladNev\":\"Pahaszt\",\r\n            \"keresztNev\":\"huliána2\",\r\n            \"neme\":1,\r\n            \"szuletesiHely\": \"sikátor 2. kuka\",\r\n            \"szuletesiDatum\":\"2010.01.01\",\r\n            \"szuletesiOrszag\":\"Kugliország\",\r\n            \"allampolgarsag\":\"kugli\",\r\n            \"anyanyelv\":\"magyar\",\r\n            \"telefon\":\"+36302349876\",\r\n            \"email\":\"kugli123@email.hu\",\r\n            \"AnyjaLeanyVezetekneve\":\"Huán\",\r\n            \"AnyjaLeanyKeresztneve\":\"Rozália\",\r\n            \"GondviseloVezetekneve\":\"Állam\",\r\n            \"GondviseloKeresztneve\":\"Bácsi\",\r\n            \"gondviseloTelefon\":\"+36302349877\",\r\n            \"gondviseloEmail\":\"gondviselo123@email.hu\",\r\n            \"lakcim\":\"3980 sátoraljaújhely, árpád utca 3\",\r\n            \"Orszag\":\"Magyarország\",\r\n            \"Iranyitoszam\":3980,\r\n            \"Kozseg\":\"Újhely city\",\r\n            \"Ut\":\"izé utca\",\r\n            \"Hazszam\":21,\r\n            \"taj\":123456788,\r\n            \"szemelyi\":\"6262626267IE\",\r\n            \"adoSzam\":1234567892,\r\n            \"bankszámlaszám\":\"12345678998-765432112342\",\r\n            \"Kepzes\":\"Közgáz\",\r\n            \"jogviszonyKezdete\":\"2024.03.02\",\r\n            \"jogviszonyVartVege\":\"2028.03.02\",\r\n            \"jogviszony\":\"nappali tagozatos\",\r\n            \"hatranyosHelyzet\":\"Halmozottan Hátrányos helyzetű\",\r\n            \"kepesitesek\":\"\",\r\n            \"egyediMegjegyzes\":\"hülye szegény de nagyon\",\r\n            \"jelszo\": \"Kukásauto!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/admin/regist-d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"admin",
+						"regist-d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/admin/adatmodositas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":738219267152\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/admin/adatmodositas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"admin",
+						"adatmodositas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/admin/adatmodositas",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"csaladNev\": \"pöti\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/admin/adatmodositas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"admin",
+						"adatmodositas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/diak",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgRGnDoWsiLCJpZCI6IjczMzMzOTI2NyIsImFkbWluIjowLCJpYXQiOjE3MTIzMjIxMzMsImV4cCI6MTcxMjMyNTEzM30.CF64ASYwhWoZk1DWA1JGRmR7qFQIddSYqsSlzlFov3E",
 							"type": "string"
 						}
 					]
@@ -79,27 +218,131 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/hitelesites",
+					"raw": "http://localhost:3000/diak",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"hitelesites"
+						"diak"
+					]
+				},
+				"description": "diák profil"
+			},
+			"response": []
+		},
+		{
+			"name": "/diak/adatok",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgRGnDoWsiLCJpZCI6IjczMzMzOTI2NyIsImFkbWluIjowLCJpYXQiOjE3MTIzMjIxMzMsImV4cCI6MTcxMjMyNTEzM30.CF64ASYwhWoZk1DWA1JGRmR7qFQIddSYqsSlzlFov3E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/diak/adatok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"diak",
+						"adatok"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/registration/student",
+			"name": "/diak/orarend",
 			"request": {
-				"method": "PUT",
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgRGnDoWsiLCJpZCI6IjczMzMzOTI2NyIsImFkbWluIjowLCJpYXQiOjE3MTIzMzA3MTIsImV4cCI6MTcxMjMzMzcxMn0.ql02Xa0W8j_U8rFaU9CQc6sPxyX4w_Kfionrhqspm1g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/diak/orarend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"diak",
+						"orarend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/diak/mulasztasok",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgRGnDoWsiLCJpZCI6IjczMzMzOTI2NyIsImFkbWluIjowLCJpYXQiOjE3MTI0MzI4NTAsImV4cCI6MTcxMjQzNTg1MH0.U38h7ya9vQmxDt0bXao7jqmnct66VinIVCNaGaJrbfg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/diak/mulasztasok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"diak",
+						"mulasztasok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/diak/osztalyzatok",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgRGnDoWsiLCJpZCI6IjczMzMzOTI2NyIsImFkbWluIjowLCJpYXQiOjE3MTI0NDExNjUsImV4cCI6MTcxMjQ0NDE2NX0.adglHCiHLXzLho27a6lZPbqotjsDRMXvPDHk6i8FuJU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":738219267152, //OM azonosító\r\n    \"osztalyId\":\"1/13c\",\r\n            \"csaladNev\":\"Pahaszt\",\r\n            \"keresztNev\":\"Álehándró\",\r\n            \"szuletesiHely\": \"sikátor 2. kuka\",\r\n            \"szuletesiDatum\":\"2010.01.01\",\r\n            \"szuletesiOrszag\":\"Kugliország\",\r\n            \"allampolgarsag\":\"kugli\",\r\n            \"anyanyelv\":\"magyar\",\r\n            \"telefon\":\"+36302349876\",\r\n            \"email\":\"kugli123@email.hu\",\r\n            \"anyjaleanyneve\":\"Huán Rozália\",\r\n            \"gondviseloNeve\":\"állambácsi\",\r\n            \"gondviseloTelefon\":\"+36302349877\",\r\n            \"gondviseloEmail\":\"gondviselo123@email.hu\",\r\n            \"lakcim\":\"3980 sátoraljaújhely, árpád utca 3\",\r\n            \"taj\":123456788,\r\n            \"adoSzam\":1234567892,\r\n            \"bankszámlaszám\":\"12345678998-765432112342\",\r\n            \"szerep\":\"diák\",\r\n            \"jogviszonyKezdete\":\"2024.03.02\",\r\n            \"jogviszonyVartVege\":\"2028.03.02\",\r\n            \"jogviszony\":\"nappali tagozatos\",\r\n            \"hatranyosHelyzet\":\"Halmozottan Hátrányos helyzetű\",\r\n            //\"kepesitesek\":\"\",\r\n            \"egyediMegjegyzes\":\"hülye szegény de nagyon\",\r\n            \"jelszo\": \"Kukásauto!\"\r\n}",
+					"raw": "{\r\n    \"tanuloId\":733339267\r\n   // \"tantargyId\":\"matek\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -107,15 +350,452 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/registration/student",
+					"raw": "http://localhost:3000/diak/osztalyzatok",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"registration",
-						"student"
+						"diak",
+						"osztalyzatok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/diak/osztalyzatok/atlagszamitas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0NDgzNzcsImV4cCI6MTcxMjQ1MTM3N30.IkGITJpPViN71f5XFFFeL8Rtqi0leYlSqN5zZwUCK04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tanuloId\":733339267,\r\n    \"tantargyId\":\"matek\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/diak/osztalyzatok/atlagszamitas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"diak",
+						"osztalyzatok",
+						"atlagszamitas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0MTYyNzUsImV4cCI6MTcxMjQxOTI3NX0.QyfD0ycAczQVHTz414LqFAcl8QFxT_YQKl5YxHgBVIE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tanar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/adatok",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tanar/adatok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"adatok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/orarend",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0NDgzNzcsImV4cCI6MTcxMjQ1MTM3N30.IkGITJpPViN71f5XFFFeL8Rtqi0leYlSqN5zZwUCK04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tanar/orarend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"orarend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/osztalyok",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgRGnDoWsiLCJpZCI6IjczMzMzOTI2NyIsImFkbWluIjowLCJpYXQiOjE3MTI0NDExNjUsImV4cCI6MTcxMjQ0NDE2NX0.adglHCiHLXzLho27a6lZPbqotjsDRMXvPDHk6i8FuJU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/osztalyok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"osztalyok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/osztalyzatok",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0NDgzNzcsImV4cCI6MTcxMjQ1MTM3N30.IkGITJpPViN71f5XFFFeL8Rtqi0leYlSqN5zZwUCK04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tanuloId\":733339267\r\n   // \"tantargyId\":\"matek\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/osztalyzatok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"osztalyzatok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/osztalyzatok",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0NDAwNjgsImV4cCI6MTcxMjQ0MzA2OH0.JYeSOxi1rSiIxn1mytgQFQvBKAaWKn8jWzWjtL-2La8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tanuloId\":733339267,\r\n    \"tantargyId\": \"matek\",\r\n    \"osztalyzat\": 4,\r\n    \"oka\": \"okos a gyerek\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/osztalyzatok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"osztalyzatok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tanar/osztalyzatok/atlagszamitas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0NDgzNzcsImV4cCI6MTcxMjQ1MTM3N30.IkGITJpPViN71f5XFFFeL8Rtqi0leYlSqN5zZwUCK04",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tanuloId\":733339267,\r\n    \"tantargyId\":\"matek\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/osztalyzatok/atlagszamitas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"osztalyzatok",
+						"atlagszamitas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/mulasztasok",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0MDQ0MDgsImV4cCI6MTcxMjQwNzQwOH0.rxVtvckR46m-veiN-oBY9XSTw1OCK-4rXASlCIjEykU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   //\"azonosito\":733339267,\r\n   \r\n   \"datum\":\"2024.04.07\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/mulasztasok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"mulasztasok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/mulasztasok",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI0MDQ0MDgsImV4cCI6MTcxMjQwNzQwOH0.rxVtvckR46m-veiN-oBY9XSTw1OCK-4rXASlCIjEykU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    //\"datum\":\"2024.04.06\",\r\n    \"azonosito\":733339267,\r\n    \"orakIgazolva\":3,\r\n    \"igazolas\":\"orvosi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/mulasztasok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"mulasztasok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tanar/mulasztasok",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"datum\":\"2024.04.06\",\r\n    \"azonosito\":733339267\r\n    //igazolva: szülői,orvosi, iskolai (ha előre lehet tudni opcionális)\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/mulasztasok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"mulasztasok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tanar/oradoksi",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXYiOiJ1bmRlZmluZWQgQWRtaW4iLCJpZCI6IlRlQSIsImFkbWluIjoxLCJpYXQiOjE3MTI1MTAyNzQsImV4cCI6MTcxMjUxMzI3NH0.bMhPk4y07u4CRSdhpuGjosonZK1p8o8DVw8hJGaCEnw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"tantargy\":\"informatika\" ,\r\n    \"osztaly\": \"2/14c\"\r\n    /*\"hianyzok\":[\r\n        {\r\n        \"id\":\"\",\r\n        \"igazolas\":\"\"\r\n        }\r\n    ],\r\n    \"jegyek\":[\r\n        {\r\n       // \"id\":\"\",\r\n        //\"jegy\":\"\",\r\n        //\"ok\":\"\"\r\n        }\r\n    ]\r\n    */\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tanar/oradokumentalas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tanar",
+						"oradokumentalas"
 					]
 				}
 			},
