@@ -25,7 +25,7 @@ adminRouter.patch("/admin/adatmodositas",adminHitelesites,modositasController.pa
 adminRouter.delete("/admin/adatmodositas",adminHitelesites,modositasController.deleteUser)
 
 adminRouter.put("/admin/regist-d",adminHitelesites, logRegController.registStudent);
-adminRouter.put("/admin/regist-t",/*adminHitelesites*/ logRegController.registTeacher);
+adminRouter.put("/admin/regist-t",adminHitelesites, logRegController.registTeacher);
 
 
 module.exports = adminRouter;
